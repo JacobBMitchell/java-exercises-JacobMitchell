@@ -28,6 +28,9 @@ hs_err_pid*
 # We don't want source control configuration.
 **/.idea/vcs.xml
 out/
+#https://raw.githubusercontent.com/github/gitignore/main/Global/JetBrains.gitignore
+.idea/
+
 
 # Maven
 target/
