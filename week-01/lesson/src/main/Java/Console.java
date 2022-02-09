@@ -9,5 +9,9 @@ public class Console {
         String name = scnr.nextLine();
         System.out.println("Yo what is up " + name);
         System.out.printf("Hey its you %s what is up dog, how is your %s?", name, "mom");
+        /*for (int i = 0; i < 1000; i++) {
+            System.out.println(i);
+
+        }*/
     }
 }
