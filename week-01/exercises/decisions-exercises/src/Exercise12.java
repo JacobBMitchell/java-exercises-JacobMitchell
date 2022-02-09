@@ -17,6 +17,20 @@ public class Exercise12 {
         int third = Integer.parseInt(console.nextLine());
 
         // 1. Add decisions statements to determine if first, second, and third are in order.
+        if (first > second && second > third){
+            System.out.println("Ordered");
+        }
         // 2. Print messages for both ordered and unordered cases.
+        if (first > second && second < third){
+            System.out.println("Swap second and third.");
+        }
+        else if (first > third && first < second){
+            System.out.println("Swap first and second.");
+        }
+        else if (first < third && first < second){
+            System.out.println("Send first to the end.");
+        }
+
+
     }
 }

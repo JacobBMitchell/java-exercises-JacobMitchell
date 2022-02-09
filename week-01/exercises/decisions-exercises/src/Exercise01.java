@@ -14,8 +14,7 @@ public class Exercise01 {
             // 3. Replace the current message with the value variable.
             System.out.println(value);
             //System.out.println("Value starts with the number 1.");
-            double massOfSun = 2*Math.pow(10,30);
-            System.out.println(massOfSun);
+
         }
     }
 }

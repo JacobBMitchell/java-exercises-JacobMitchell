@@ -22,6 +22,24 @@ public class Exercise14 {
             case 1:
                 System.out.println("I refuse to say \"a case of the Mondays\".");
                 break;
+            case 2:
+                System.out.println("I refuse to say \"the club is going up on a Tuesday\".");
+                break;
+            case 3:
+                System.out.println("I refuse to say \"Hump day\".");
+                break;
+            case 4:
+                System.out.println("I refuse to say \"sorry Honey its Thursday\".");
+                break;
+            case 5:
+                System.out.println("I refuse to say \"TGIF\".");
+                break;
+            case 6:
+                System.out.println("I refuse to say \"Saturday's are for the boys\".");
+                break;
+            case 7:
+                System.out.println("I refuse to say \"Pray\".");
+                break;
             default:
                 System.out.println("I don't recognize that day.");
                 break;
