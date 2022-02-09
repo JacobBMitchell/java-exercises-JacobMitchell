@@ -9,8 +9,13 @@ public class Exercise20 {
         System.out.println(tenthChar);
 
         // 1. Store the first character from aliceQuote in a char variable.
+        char first = aliceQuote.charAt(0);
         // 2. Print it.
+        System.out.println(first);
         // 3. Print the 20th character.
+        char twenty = aliceQuote.charAt(19);
+        System.out.println(twenty);
         // 4. Print the 68th character.
+        System.out.println(aliceQuote.charAt(67));
     }
 }
