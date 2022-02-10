@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import static java.lang.Character.isWhitespace;
+
 public class Exercise07 {
 
     public static void main(String[] args) {
@@ -15,7 +17,9 @@ public class Exercise07 {
 
         String result = "";
         for (int i = 0; i < phrase.length(); i++) {
-            result += phrase.charAt(i);
+            if (!isWhitespace(phrase.charAt(i))) {
+                result += phrase.charAt(i);
+            }
         }
 
         System.out.println("Your phrase without whitespace is: " + result);

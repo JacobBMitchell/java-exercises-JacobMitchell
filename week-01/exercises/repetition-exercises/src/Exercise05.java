@@ -10,5 +10,8 @@ public class Exercise05 {
             System.out.println(index);
             index += 5;
         }
+        for (int i = 5; i <= 100; i+=5) {
+            System.out.println(i);
+        }
     }
 }
