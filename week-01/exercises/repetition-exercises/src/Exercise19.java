@@ -16,6 +16,20 @@ public class Exercise19 {
         // and take one character from the second string and add it to the result.
         // If there are no more characters available, don't add characters.
         // 2. Print the result.
+        String mix = "";
+        for (int i = 0; i < Math.max(first.length(),second.length()); i++) {
+            if (i < Math.min(first.length(), second.length())) {
+                mix += (Character.toString(first.charAt(i)) + Character.toString(second.charAt(i)));
+                continue;
+            }
+            if (first.length() == Math.max(first.length(),second.length())){
+                mix += (Character.toString((first.charAt(i))));
+            }
+            if (second.length() == Math.max(first.length(),second.length())){
+                mix += (Character.toString((second.charAt(i))));
+            }
+        }
+        System.out.println(mix);
 
         // Examples
         // "abc", "123" -> "a1b2c3"

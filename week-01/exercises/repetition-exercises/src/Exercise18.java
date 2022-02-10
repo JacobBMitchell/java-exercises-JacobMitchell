@@ -18,6 +18,9 @@ public class Exercise18 {
         // 1. Write a loop to create a new string from a phrase by "cutting out" any characters from the start index
         // to the end index.
         // 2. Print the result.
+        if (start < phrase.length() && end < phrase.length()){
+            phrase = phrase.substring(0,start) + phrase.substring(end, phrase.length()-1);
+        }
 
         // Examples
         // phrase, start, end -> result
