@@ -9,7 +9,7 @@ public class Exercise17 {
         System.out.print("Hours of homework: ");
         int hoursOfHomework = Integer.parseInt(console.nextLine());
 
-        System.out.println("Day of the week [1-7]: ");
+        System.out.println("Day of the week (starting 1 = Monday) [1-7]: ");
         int dayOfWeek = Integer.parseInt(console.nextLine());
 
         // 1. Re-implement Exercise07 using a switch statement.
@@ -21,6 +21,21 @@ public class Exercise17 {
         // each case. That's a lot of repeated typing.
         // Then print the detailed message after the switch.
         switch (dayOfWeek){
+            case 6:
+            case 7:
+                if (hoursOfHomework > 15){
+                    System.out.println("You gotta do that hw man its too much.");
+                }
+                else{
+                    System.out.println("Take the day off.");
+                }
+                break;
+            default:
+                System.out.println("You gotta do hw its a school night.");
+
+
+
+
 
         }
     }
