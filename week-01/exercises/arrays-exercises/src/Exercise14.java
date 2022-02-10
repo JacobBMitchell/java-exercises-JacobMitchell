@@ -41,9 +41,20 @@ public class Exercise14 {
 
         // The email addresses above are valid, but have inconsistent capitalization.
         // 1. Fix the capitalization. Normalize to all lowercase.
+        emailAddresses = lowercase(emailAddresses);
 
         // The following call should print all lowercase email addresses.
         printArray(emailAddresses);
+    }
+
+    private static String[] lowercase(String[] emailAddresses) {
+        int i = 0;
+        for(String email:emailAddresses){
+            email = email.toLowerCase();
+            emailAddresses[i] = email;
+            i++;
+        }
+        return emailAddresses;
     }
 
     public static void printArray(String[] arr) {

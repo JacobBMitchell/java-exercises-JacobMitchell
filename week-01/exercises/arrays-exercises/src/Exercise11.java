@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 
 public class Exercise11 {
@@ -10,6 +11,27 @@ public class Exercise11 {
         // (We must count first to know the capacity to allocate.)
         // 3. Loop through `values` a second time. Add positive elements to the new array.
         // 4. Confirm the positive array is properly populated either by debugging or printing its elements.
+        int[] posNums = getPosNums(values);
+        System.out.println(Arrays.toString(posNums));
+    }
+
+    private static int[] getPosNums(int[] values) {
+        int i = 0;
+        for(int num:values){
+            if (num >= 0){
+                i++;
+            }
+        }
+        int[] posNums = new int[i];
+        i=0;
+        for(int num:values){
+            if (num >= 0){
+                posNums[i] = num;
+                i++;
+            }
+        }
+        return  posNums;
+
     }
 
     public static int[] makeRandomArray() {

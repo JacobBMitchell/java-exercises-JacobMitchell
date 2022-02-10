@@ -16,16 +16,17 @@ public class Exercise19 {
         // and take one character from the second string and add it to the result.
         // If there are no more characters available, don't add characters.
         // 2. Print the result.
+        int max = Math.max(first.length(),second.length());
         String mix = "";
-        for (int i = 0; i < Math.max(first.length(),second.length()); i++) {
+        for (int i = 0; i < max; i++) {
             if (i < Math.min(first.length(), second.length())) {
                 mix += (Character.toString(first.charAt(i)) + Character.toString(second.charAt(i)));
                 continue;
             }
-            if (first.length() == Math.max(first.length(),second.length())){
+            if (first.length() == max){
                 mix += (Character.toString((first.charAt(i))));
             }
-            if (second.length() == Math.max(first.length(),second.length())){
+            if (second.length() == max){
                 mix += (Character.toString((second.charAt(i))));
             }
         }

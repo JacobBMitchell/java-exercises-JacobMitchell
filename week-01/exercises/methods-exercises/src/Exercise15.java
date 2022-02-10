@@ -9,18 +9,23 @@ public class Exercise15 {
     }
 
     private static void FizzBuzz(int max) {
-        for (int i = 0; i <= max; i++) {
-            if (i%3 == 0 && i%5 == 0){ // or i%15 == 0 (lcd)
-                System.out.println("FizzBuzz");
+        String base = "";
+        for (int i = 1; i <= max; i++) {
+            if (i%3 == 0){ // or i%15 == 0 (lcd)
+                base += "Fizz";
             }
-            else if (i%3 == 0){
-                System.out.println("Fizz");
+            if (i%5 == 0){
+                base += "Buzz";
             }
-            else if(i%5 == 0){
-                System.out.println("Buzz");
+            if(i%7 == 0){
+                base += "Woof";
             }
-            else {
+            if (base.equalsIgnoreCase("")){
                 System.out.println(i);
+            }
+            else{
+                System.out.println(base);
+            base ="";
             }
         }
     }
