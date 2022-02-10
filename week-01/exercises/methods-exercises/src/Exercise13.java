@@ -36,9 +36,18 @@ public class Exercise13 {
 
     public static void main(String[] args) {
         // 4. Uncomment the code below and confirm it works.
-        // System.out.println(isAscendingContiguous(3, 4, 5)); // true
-        // System.out.println(isAscendingContiguous(-10, 4, 100)); // false
-        // System.out.println(isAscendingContiguous(2, 1, 2)); // false
-        // System.out.println(isAscendingContiguous(5, 4, 3)); // false, not ascending
+         System.out.println(areInOrder(4,7,9));
+         System.out.println(isAscendingContiguous(3, 4, 5)); // true
+         System.out.println(isAscendingContiguous(-10, 4, 100)); // false
+         System.out.println(isAscendingContiguous(2, 1, 2)); // false
+         System.out.println(isAscendingContiguous(5, 4, 3)); // false, not ascending
+    }
+
+    private static boolean areInOrder(int first, int second, int last) {
+        return(first < second && second < last);
+    }
+
+    private static boolean isAscendingContiguous(int first, int second, int third) {
+        return (second -1 == first && third -1 ==second);
     }
 }

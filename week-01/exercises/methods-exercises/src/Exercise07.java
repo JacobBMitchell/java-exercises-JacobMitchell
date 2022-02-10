@@ -9,5 +9,10 @@ public class Exercise07 {
 
     public static void main(String[] args) {
         // 2. Call your method in various ways to test it here.
+        boolean ordercheck = areInOrder(1,2,3,4);
+    }
+
+    private static boolean areInOrder(int first, int second, int third, int fourth) {
+        return (first < second && second < third && third < fourth);
     }
 }

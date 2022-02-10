@@ -8,9 +8,14 @@ public class Exercise11 {
 
         name = readString("What's your name?: ");
         // 2. Uncomment the line below and confirm readInt works.
-        // pillowCount = readInt("How many pillows do you sleep with?: ");
+        pillowCount = readInt("How many pillows do you sleep with?: ");
 
         System.out.printf("%s sleeps with %s pillows.%n", name, pillowCount);
+    }
+
+    private static int readInt(String s) {
+        int theInt = Integer.parseInt(readString(s));
+        return theInt;
     }
 
     // 1. Create a method.

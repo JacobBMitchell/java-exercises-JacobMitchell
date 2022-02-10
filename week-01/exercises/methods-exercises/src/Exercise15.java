@@ -1,4 +1,29 @@
+import java.util.Scanner;
+
 public class Exercise15 {
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        System.out.print("Pick a number: ");
+        int max = scn.nextInt();
+        FizzBuzz(max);
+    }
+
+    private static void FizzBuzz(int max) {
+        for (int i = 0; i <= max; i++) {
+            if (i%3 == 0 && i%5 == 0){ // or i%15 == 0 (lcd)
+                System.out.println("FizzBuzz");
+            }
+            else if (i%3 == 0){
+                System.out.println("Fizz");
+            }
+            else if(i%5 == 0){
+                System.out.println("Buzz");
+            }
+            else {
+                System.out.println(i);
+            }
+        }
+    }
     /* FIZZ BUZZ
 
     Historically, the Fizz Buzz (https://en.wikipedia.org/wiki/Fizz_buzz) problem was used in programming interviews.

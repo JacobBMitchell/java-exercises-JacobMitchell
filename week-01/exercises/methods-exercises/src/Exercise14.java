@@ -1,4 +1,18 @@
+import java.util.Scanner;
+
 public class Exercise14 {
+    public static void main(String[] args) {
+        String firstName = getStr("What is your first name? ");
+        String lastName = getStr("What is your last name? ");
+        int cities = Integer.parseInt(getStr("How many cities did you live in? "));
+        int instruments = Integer.parseInt(getStr("How many instruments can you play? "));
+    }
+
+    private static String getStr(String question) {
+        Scanner scn = new Scanner(System.in);
+        System.out.print(question);
+        return scn.nextLine();
+    }
     /* SHORT SURVEY
 
     Write a program that asks a user four questions and prints the results:

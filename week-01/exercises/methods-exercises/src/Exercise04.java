@@ -12,6 +12,18 @@ public class Exercise04 {
     // 1. Complete getFirstVowel.
     // If no vowel is found, return 0. (As a char, 0 represents the NULL value.)
     public static char getFirstVowel(String value) {
+        char letter = 'b';
+        for (int i = 0; i < value.length(); i++) {
+            letter = value.charAt(i);
+            switch (letter){
+                case 'a':
+                case 'e':
+                case 'i':
+                case 'o':
+                case 'u':
+                    return letter;
+            }
+        }
         return 0;
     }
 }

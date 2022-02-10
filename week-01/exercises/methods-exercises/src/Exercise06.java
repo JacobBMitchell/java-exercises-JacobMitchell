@@ -8,6 +8,11 @@ public class Exercise06 {
     // Otherwise, returns false.
 
     public static void main(String[] args) {
-        // 2. Call your method in various ways to test it here.
+        boolean between = isBetween(3,2,5);
+        System.out.println(between);
+    }
+
+    private static boolean isBetween(int mid, int low, int high) {
+        return (low < mid && mid < high);
     }
 }
