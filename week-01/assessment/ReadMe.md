@@ -9,23 +9,23 @@ Here you should list out requirements for my project from the provided assessmen
 * [ ] Create menu: Check in, out, view guests, exit
 * [ ] Create methods for each menu option
 
-###Check-in
-Ask for room using scanner
-Check to see if room is available
-Ask for name and pair the two in the main array
+###Check-in (checkIn(rooms))
+Ask for room using scanner\
+Check to see if room is available\
+Ask for name and pair the two in the main array\
 confirm check in
 
-###Check-out
-Ask for room using scanner
-check if room is occupied
-remove the occupant of the room
+###Check-out (checkOut(rooms))
+Ask for room using scanner\
+check if room is occupied\
+remove the occupant of the room\
 confirm checkout
 
-###View guests
-Scanner ask for room#
-Check +5 from input if greater than rooms available start over from room 1(0)
-Check -5 from input, arrays should allow negative numbers to check backwards
+###View guests (viewGuests(rooms))
+Scanner ask for room\
+Check +5 from input if greater than rooms available start over from room 1(0)\
+Check -5 from input, if less than decline from max.\
 display rooms
-
+.
 ###Exit
 boolean an exit condition to be false and cancel while loop
