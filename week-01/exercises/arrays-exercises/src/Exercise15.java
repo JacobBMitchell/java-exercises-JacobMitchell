@@ -8,7 +8,6 @@ public class Exercise15 {
         int[] two = makeRandomArray();
         int[] combo = addToArrays(one, two);
         System.out.println(Arrays.toString(combo));
-
         // 1. Create a new int[] with room enough for all elements in `one` and `two`.
         // 2. Copy elements from `one` into the beginning of the array.
         // 3. Copy elements from `two` at the end of the array.

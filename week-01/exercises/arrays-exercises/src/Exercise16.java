@@ -9,6 +9,14 @@ public class Exercise16 {
         int[] two = makeRandomAscendingArray();
         int[] merge = mergeAndSort(one, two);
         System.out.println(Arrays.toString(merge));
+        Planet[] planets = new Planet[3];
+        planets[0] = new Planet(30);
+        planets[1] = new Planet(31);
+        planets[2] = new Planet(35);
+
+        for (Planet planet: planets){
+            System.out.println(planet.mass);
+        }
 
         // makeRandomAscendingArray creates a random array with a capacity between 50 and 150.
         // Its elements are guaranteed to be sorted ascending.
