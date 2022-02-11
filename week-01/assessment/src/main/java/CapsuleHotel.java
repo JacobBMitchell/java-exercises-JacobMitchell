@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class CapsuleHotel {
     public static Scanner scn = new Scanner(System.in);
     public static void main(String[] args) {
+        //Create primary string array this application is based on
         int numberOfRooms;
         while(true) {
             System.out.print("Hello and Welcome to Capsule Hotel!\nHow many rooms do you have? ");
@@ -13,6 +14,8 @@ public class CapsuleHotel {
             }
         }
         String[] rooms = new String[numberOfRooms];
+
+        //Main for loop that allows for application to run
         lab1: while(true){
             printMenuOptions();
             System.out.print("Choose an option [1-4]: ");
@@ -42,6 +45,7 @@ public class CapsuleHotel {
     }
 
     private static void viewRooms(String[] rooms) {
+        //determine if input is valid
         int selectedRoom = Integer.MIN_VALUE;
         while ((selectedRoom >= rooms.length || selectedRoom < 1)){
             System.out.print("Please select a room about which to view ");
@@ -51,7 +55,7 @@ public class CapsuleHotel {
                 break;
             }
         }
-
+        //Display room logic
         for (int i = selectedRoom -5; i < selectedRoom + 6 ; i++) {
             if (i > rooms.length){
                 System.out.printf("Room %d: %s\n",i-rooms.length,rooms[i-1-rooms.length] == null ? "Empty":rooms[i-1-rooms.length]);
@@ -113,7 +117,7 @@ public class CapsuleHotel {
 
     }
 
-    private static void printMenuOptions() {
+    private static void printMenuOptions() { //menu options
         System.out.println("Guest Menu \n==========");
         System.out.println("1. Check In");
         System.out.println("2. Check Out");
