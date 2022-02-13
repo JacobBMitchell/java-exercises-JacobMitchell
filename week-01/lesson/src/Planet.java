@@ -14,7 +14,7 @@ public class Planet {
         return G*this.mass*p2.mass/Math.pow(distBetween(this, p2),2);
     }
 
-    private double distBetween(Planet planet, Planet p2) {
+    public double distBetween(Planet planet, Planet p2) {
         double x2 = planet.pos[0]*planet.pos[0] + p2.pos[0]*p2.pos[0];
         double y2 = planet.pos[1]*planet.pos[1] + p2.pos[1]*p2.pos[1];
         return Math.sqrt(x2 + y2);
