@@ -10,6 +10,10 @@ public class Exercise02 {
         System.out.println(ocean.getRating());
 
         // 3. Instantiate two musicians and assign them to new variables.
+        Musician paul = new Musician("Paul McCartney", 10);
+        Musician lamar = new Musician("Kendrick Lamar", 15);
         // 4. Print each musicians' name and rating on a single line.
+        System.out.println(paul.getName()+": "+paul.getRating());
+        System.out.println(lamar.getName()+": "+lamar.getRating());
     }
 }
