@@ -4,6 +4,10 @@ public class Exercise01 {
 
         Musician ocean = new Musician("Frank Ocean", 10);
         System.out.println(ocean.getName());
+        Musician cash = new Musician("Jonny Cash", 10);
+        Musician kurt = new Musician("Kurt Cobain", 9);
+        System.out.println(cash.getName());
+        System.out.println(kurt.getName());
 
         // 1. Find the Musician class in this project.
         // 2. Read its constructor comments.
