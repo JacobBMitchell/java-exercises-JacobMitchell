@@ -10,6 +10,9 @@ public class Exercise09 {
         ArrayList<BoardGame> games = GameRepository.getAll();
 
         // 1. Grab the 8th game in `games`.
+        System.out.println(games);
+        games.remove(7);
+        System.out.println(games);
         // 2. Remove it passing its reference to the `remove` method.
         // 3. Print `games` and confirm it's gone.
     }
