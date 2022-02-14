@@ -16,7 +16,8 @@ public class CapsuleHotel {
         String[] rooms = new String[numberOfRooms];
 
         //Main for loop that allows for application to run
-        lab1: while(true){
+        boolean running = true;
+        while(running){
             printMenuOptions();
             System.out.print("Choose an option [1-4]: ");
             int choice = scn.nextInt();
@@ -35,10 +36,13 @@ public class CapsuleHotel {
                     System.out.print("Are you sure you want to leave?\nAll data will be lost?[y/n] ");
                     String quit = scn.nextLine();
                     if (quit.equalsIgnoreCase("y")) {
-                        break lab1; //equivalent to having a running boolean and setting it to false
+                        running = false; //equivalent to having a running boolean and setting it to false
                     }
+                    break;
 
                 default:
+                    System.out.println("This isn't a valid input! ");
+
 
             }
         }
@@ -56,20 +60,37 @@ public class CapsuleHotel {
             }
         }
         //Display room logic
+
         for (int i = selectedRoom -5; i < selectedRoom + 6 ; i++) {
             if (i > rooms.length){
-                System.out.printf("Room %d: %s\n",i-rooms.length,rooms[i-1-rooms.length] == null ? "Empty":rooms[i-1-rooms.length]);
+                int roomIndex = i -rooms.length-1;
+                System.out.printf("Room %d: %s\n",i-rooms.length,
+                        rooms[roomIndex] == null ? "Empty":rooms[roomIndex]);
             }
             else if (i <= 0){
-                System.out.printf("Room %d: %s\n",i+rooms.length,rooms[rooms.length+ i-1] == null ? "Empty":rooms[rooms.length+i-1]);
+                int roomIndex = rooms.length +i -1;
+                System.out.printf("Room %d: %s\n",i+rooms.length,
+                        rooms[roomIndex] == null ? "Empty":rooms[roomIndex]);
             }
             else {
-                System.out.printf("Room %d: %s\n", i, rooms[i - 1] == null ? "Empty" : rooms[i - 1]);
+                System.out.printf("Room %d: %s\n", i,
+                        rooms[i - 1] == null ? "Empty" : rooms[i - 1]);
             }
         }
     }
 
     private static void checkOut(String[] rooms) {
+        //check if all rooms are empty
+        int counter = 0;
+        for (String room: rooms){
+            if (room == null){
+                counter += 1;
+            }
+        }
+        if (counter == rooms.length){
+            System.out.println("There is no one in any rooms.");
+            return;
+        }
         //ask for valid room number
         int exitRoom = Integer.MIN_VALUE; boolean isValid = false;
         while ((exitRoom > rooms.length || exitRoom < 1) || !isValid){
@@ -87,11 +108,21 @@ public class CapsuleHotel {
         }
         //check if room is occupied
         //set room value to null
-        System.out.println("We are sorry to see you go " + rooms[exitRoom-1] + ".");
+        System.out.println(rooms[exitRoom-1] + " has been checked out.");
         rooms[exitRoom-1] = null;
     }
 
     private static void checkIn(String[] rooms) {
+        int counter = 0;
+        for (String room: rooms){
+            if (room != null){
+                counter++;
+            }
+        }
+        if (counter == rooms.length){
+            System.out.println("All rooms are booked.");
+            return;
+        }
         //in a loop ask for valid input
         int newRoom = Integer.MIN_VALUE; boolean isValid = false;
         while ((newRoom > rooms.length || newRoom < 1) || !isValid){
@@ -109,7 +140,7 @@ public class CapsuleHotel {
         }
         System.out.print("What is the name of the guest? ");
         String name = scn.nextLine();
-        System.out.println("Thank you " + name + " for staying at Capsule Hotel! ");
+        System.out.println( name + "has been booked for room: "+ newRoom);
         rooms[newRoom-1] = name;
 
         //ask for name
