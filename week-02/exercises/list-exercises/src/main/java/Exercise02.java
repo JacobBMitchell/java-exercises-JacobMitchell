@@ -11,7 +11,19 @@ public class Exercise02 {
     public static void main(String[] args) {
 
         ArrayList<BoardGame> games = GameRepository.getAll();
+        printAll(games);
 
         // 2. Print `games` using your "print all" method.
+    }
+
+    private static void printAll(ArrayList<BoardGame> games) {
+        for (BoardGame game : games) {
+            System.out.println(game.getName());
+
+        }
+//        for (int i = 0; i < games.size(); i++) {
+//            System.out.println(games.get(i).getName());
+//
+//        }
     }
 }
