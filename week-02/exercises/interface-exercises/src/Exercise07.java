@@ -41,6 +41,18 @@ public class Exercise07 {
         do {
             System.out.print("Select [1-4]:");
             input = console.nextLine();
+            switch (input){
+                case "1":
+                    return makeAccount("Wallet");
+                case "2":
+                    return makeAccount("Mortgage");
+                case "3":
+                    return makeAccount("Vault");
+                case "4":
+                    return makeAccount("Bank");
+
+
+            }
         } while (!(input.length() == 1 && input.charAt(0) >= '1' && input.charAt(0) <= '4'));
 
         // 1. Add a switch statement to handle options 1 - 4.
@@ -53,6 +65,25 @@ public class Exercise07 {
         // - for Vault?
 
         // 3. Return the Wallet, Mortgage, Vault, or Bank Account instead of null.
+        return null;
+    }
+
+    private static MoneyStorage makeAccount(String type) {
+        System.out.print("What would you like to name your "+type+"? ");
+        String desc = console.nextLine();
+        System.out.print("What is the balance on your " + type+"? ");
+        double balance = console.nextDouble();
+        console.nextLine();
+        switch (type){
+            case "Wallet":
+                return new Wallet(balance, desc);
+            case "Mortgage":
+                return new Mortgage(balance,desc);
+            case "Vault":
+                return new Vault(balance,desc);
+            case "Bank":
+                return new BankAccount(balance,desc);
+        }
         return null;
     }
 
