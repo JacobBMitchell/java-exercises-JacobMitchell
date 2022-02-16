@@ -14,13 +14,13 @@ public class Monster {
 
     public void moveX(int x) {
         if (x+1 == Game.WIDTH) {
-            this.x = x--;
+            this.x--;
         }
         else {this.x++;}
     }
     public  void moveXNeg(int x){
         if(x-1 == 0){
-            this.x = x++;
+            this.x++;
         }
         else {this.x--;}
     }
@@ -31,13 +31,13 @@ public class Monster {
 
     public void moveY(int y) {
         if (y+1 == Game.HEIGHT) {
-            this.y = y--;
+            this.y--;
         }
         else {this.y++;}
     }
     public  void moveYNeg(int y){
         if(y-1 == 0){
-            this.y = y++;
+            this.y++;
         }
         else {this.y--;}
     }
