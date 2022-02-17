@@ -15,6 +15,9 @@ public class Exercise07 {
         if (values == null) {
             return null;
         }
+        if (values.length == 0) {
+            return new String[0];
+        }
         String[] reversed = new String[values.length];
         int j = 0;
         for (int i = values.length-1; i >= 0; i--) {

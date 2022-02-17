@@ -22,7 +22,7 @@ public class Exercise06 {
             return null;
         }
         if (values.length == 0) {
-            return values;
+            return new String[0];
         }
         String[] capitalized = new String[values.length];
         for (int i = 0; i < values.length; i++) {
