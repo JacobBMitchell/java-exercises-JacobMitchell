@@ -3,7 +3,9 @@ public class Person{
     private final String firstName;
     private final String lastName;
 //    private Wallet personalWallet;
+    // this is has-a like a person has-a name
     private MoneyStorage myMoneyStorage;
+    // we can use interfaces as a catch all for any MoneyStorage item.
 
     public Person(String firstName, String lastName) {
         this.firstName = firstName;

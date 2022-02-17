@@ -19,7 +19,7 @@ public class Exercise08 {
         p.setMyMoneyStorage(new Wallet(0,p.getFirstName()+"'s Wallet")); // still optional but if called for description then required.
         p.deposit(125.85);
         System.out.println(p.getFullName());
-        System.out.println(p.getDescription());
+        System.out.println(p.getMyMoneyStorage().getDescription());
         System.out.println(p.getBalance());
     }
 }
