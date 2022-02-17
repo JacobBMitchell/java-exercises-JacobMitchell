@@ -3,7 +3,7 @@ import learn.GameRepository;
 
 import java.util.ArrayList;
 
-public class Exercise02 {
+public class Exercise02 { //reload pom.xml file through maven to fix the error I was having!!!!
 
     // 1. Create a method to print all BoardGames in an ArrayList<BoardGame>.
     // Consider making it `public` so you can use it in other exercises.

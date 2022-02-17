@@ -8,5 +8,7 @@ class Exercise02Test {
     void surroundWithTags() {
         assertEquals("<b>a</b>", Exercise02.surroundWithTag("a", "b"));
         assertEquals("splendid", Exercise02.surroundWithTag("splendid", null));
+        assertEquals("<span></span>", Exercise02.surroundWithTag(null, "span"));
+        assertEquals(null, Exercise02.surroundWithTag(null, null));
     }
 }
