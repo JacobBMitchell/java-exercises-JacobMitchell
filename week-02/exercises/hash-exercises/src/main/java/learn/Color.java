@@ -1,5 +1,7 @@
 package learn;
 
+import java.util.Objects;
+
 public class Color {
 
     private final String name;
@@ -9,5 +11,19 @@ public class Color {
     }
 
     // 1. Override Color .equals and .hashCode to use the `name` field.
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Color color = (Color) o;
+        return Objects.equals(name, color.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
     // (Hint: IntelliJ can generate these methods for you.)
 }
