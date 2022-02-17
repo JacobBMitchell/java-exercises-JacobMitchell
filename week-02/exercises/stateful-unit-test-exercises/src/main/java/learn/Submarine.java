@@ -10,7 +10,7 @@ package learn;
  */
 public class Submarine {
 
-    private final double maxDepth;
+    public final double maxDepth;
     private double depthInMeters;
 
     public Submarine(double maxDepth) {
@@ -31,7 +31,7 @@ public class Submarine {
     }
 
     public void surface() {
-        if (depthInMeters >= 0-5){
+        if (depthInMeters >= 5){
             depthInMeters -= 5;
         }
         else {depthInMeters = 0;}

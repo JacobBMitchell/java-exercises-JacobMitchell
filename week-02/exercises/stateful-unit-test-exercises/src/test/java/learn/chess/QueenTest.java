@@ -27,6 +27,34 @@ class QueenTest {
         assertEquals(0, queen.getColumn());
     }
 
+    @Test
+    void queenShouldMoveDiagonally(){
+        assertTrue(queen.move(3,3));
+        assertEquals(3,queen.getRow());
+        assertEquals(3,queen.getColumn());
+
+        assertTrue(queen.move(6,0));
+        assertEquals(6,queen.getRow());
+        assertEquals(0,queen.getColumn());
+        queen.move(0,0);
+
+        assertFalse(queen.move(2,4));
+        assertEquals(0,queen.getRow());
+        assertEquals(0,queen.getColumn());
+
+    }
+
+    @Test
+    void queenShouldStayInbounds(){
+        assertFalse(queen.move(8,0));
+        assertEquals(0,queen.getRow());
+        assertEquals(0,queen.getColumn());
+
+        assertFalse(queen.move(0,9));
+        assertEquals(0,queen.getRow());
+        assertEquals(0,queen.getColumn());
+    }
+
     // 1. Add tests to validate Queen movement.
     // Required tests:
     // - anything off the board is invalid, should return false and leave field values alone.

@@ -1,10 +1,9 @@
 package learn;
 
-import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class SubmarineTest {
 
@@ -25,6 +24,34 @@ class SubmarineTest {
         submarine.dive();
         // 1.0 at sea level plus 1.0 * 0.9
         assertEquals(1.9, submarine.getPressureInAtmospheres(), 0.001);
+    }
+
+    @Test
+    void cannnotPassMaxDepth(){
+        Submarine sub2 = new Submarine(400);
+        for (int i = 0; i < submarine.maxDepth/3+1; i++) {
+            submarine.dive();
+        }
+        assertEquals(submarine.maxDepth,submarine.getDepthInMeters());
+        for (int i = 0; i < sub2.maxDepth/3+1; i++) {
+            sub2.dive();
+        }
+        assertEquals(sub2.maxDepth,sub2.getDepthInMeters());
+
+    }
+
+    @Test
+    void cannotBreachTheSurface(){
+        submarine.dive();
+        submarine.surface();
+        assertEquals(0,submarine.getDepthInMeters());
+        submarine.dive();
+        submarine.dive();
+        submarine.dive();
+        submarine.surface();
+        submarine.surface();
+        submarine.surface();
+        assertEquals(0,submarine.getDepthInMeters());
     }
 
     // 1. Create one or more tests to confirm `dive` is working properly.

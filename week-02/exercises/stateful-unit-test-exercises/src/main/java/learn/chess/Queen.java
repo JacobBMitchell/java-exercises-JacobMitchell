@@ -39,7 +39,23 @@ public class Queen {
      * @return true if the move is valid, false if it's not
      */
     public boolean move(int row, int column) {
-
+        if ((row > 7) || (column > 7) || (row < 0) || (column < 0) || (row == this.row && column == this.column)) { // if inbounds and not in the same place
+            return false;
+        }
+        if (this.column == column){ // allow row changes
+            this.row = row;
+            return true;
+        }
+        if (this.row == row){ // allow column changes
+            this.column = column;
+            return true;
+        }
+        if(Math.abs(this.row - row) == Math.abs(this.column - column)){//allow diagonal changes
+            this.row = row;
+            this.column = column;
+            return true;
+        }
+        return false;
         // 1. Implement the move method.
         // If the move is valid, return true and update `row` and `column` fields.
         // If the move is invalid, return false and do not update fields.
@@ -51,6 +67,5 @@ public class Queen {
         // - Otherwise, the absolute difference between row parameter and field
         //   and the absolute difference between the column parameter and field must be the same.
         //   That represents a diagonal move.
-        return false;
     }
 }
