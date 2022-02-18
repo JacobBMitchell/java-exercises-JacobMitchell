@@ -25,6 +25,8 @@ public class Planets {
         this.mass = mass;
         this.distFromSun = distFromSun;
     }
+
+    @Override
     public String toString() {
         return "Planet{" +
                 "name='" + name + '\'' +
