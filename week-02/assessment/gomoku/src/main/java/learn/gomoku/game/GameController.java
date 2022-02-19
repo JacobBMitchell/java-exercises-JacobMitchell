@@ -1,8 +1,8 @@
 package learn.gomoku.game;
 
-import learn.gomoku.players.HumanPlayer;
+import learn.gomoku.App;
 import learn.gomoku.players.Player;
-import learn.gomoku.players.RandomPlayer;
+
 
 import java.util.List;
 import java.util.Scanner;
@@ -10,36 +10,6 @@ import java.util.Scanner;
 public class GameController {
 
     Scanner scn = new Scanner(System.in);
-
-
-    /**
-     * Innitializes the game, asks for the player to either play or not, get their name and begin the game.
-     */
-//    public void run() {
-//        System.out.println("Hello, welcome to the Game of Gomoku! \n=================================== ");
-//        System.out.print("Would you like to play(1) or have a random player play(2)?");
-//        int choice = scn.nextInt();
-//        scn.nextLine();
-//        Player player1 = null;
-//        if (choice == 1) {
-//            System.out.print("What is your name?: ");
-//            String name = scn.nextLine();
-//            player1 = new HumanPlayer(name);
-//        }
-//        else if (choice == 2){
-//           player1 = new RandomPlayer();
-//        }
-//        else {
-//            System.out.println("Not a valid input.");
-//            run(); //recursion
-//        }
-//
-//        Gomoku gomoku = new Gomoku(player1,player2);
-//
-//        gameLoop(gomoku);
-//
-//    }
-
     /**
      * The basic game loop takes the game and runs it displaying the board, checking whose move it is
      * and sees if the game is over, once the game finishes displays whose won and shows the winning board
@@ -47,11 +17,15 @@ public class GameController {
      */
     public void gameLoop(Gomoku gomoku) {
         boolean playing = true;
+        System.out.println(gomoku.getCurrent().getName() + "'s turn is first!");
         while (playing){
             displayBoard(gomoku.getStones());
 
             Player player = gomoku.getCurrent();
-            //asks whoevers turn it is to automatically generate a move if possible
+            if (!gomoku.isOver()) {
+                System.out.println(player.getName() + " its your turn!");
+            }
+            //asks whoever turn it is to automatically generate a move if possible
             Stone nextMove = null;
             while(true) {
                 nextMove = player.generateMove(gomoku.getStones());
@@ -62,8 +36,8 @@ public class GameController {
                     break;
                 }
             }
-            //if it is a human player the HumanPlayer class returns null so we would then need to generate a move
-            if (nextMove == null){
+            //if it is a human player the HumanPlayer class returns null, so we would then need to generate a move
+            if (nextMove == null && !gomoku.isOver()){
                 nextMove = getNextMove(gomoku);
             }
             Result result = gomoku.place(nextMove);
@@ -71,7 +45,24 @@ public class GameController {
             playing = result.isSuccess(); //fails when an error msg is introduced like duplicate move
         }
         //displayBoard(gomoku.getStones());
-        System.out.println(gomoku.getWinner().getName() + " wins!!!");
+        if (gomoku.getWinner() == null){
+            System.out.println("Its a draw! ");
+        }
+        else {
+            System.out.println(gomoku.getWinner().getName() + " wins!!!");
+        }
+        playAgain();
+    }
+
+    private void playAgain() {
+        System.out.print("Want to play again?[y/n] ");
+        String choice = scn.nextLine();
+        if(choice.equalsIgnoreCase("y")){
+            App.main(new String[0]);
+        }
+        else {
+            System.out.println("Goodbye!");
+        }
     }
 
     /**
@@ -82,13 +73,14 @@ public class GameController {
     private Stone getNextMove(Gomoku gomoku) {
         Stone output;
 
-        System.out.println(gomoku.getCurrent().getName()+"'s Turn");
-        System.out.print("What is the x (col) coordinate of your next move?(0-14): ");
-        int col = Integer.parseInt(scn.nextLine());
-        System.out.print("What is the y (row) coordinate of your next move?(0-14): ");
-        int row = Integer.parseInt(scn.nextLine());
+        //System.out.println(gomoku.getCurrent().getName()+"'s Turn");
+        System.out.print("What is the x (col) coordinate of your next move?(1-15): ");
+        int col = Integer.parseInt(scn.nextLine())-1;
+        System.out.print("What is the y (row) coordinate of your next move?(1-15): ");
+        int row = Integer.parseInt(scn.nextLine())-1;
 
         if (!validMove(gomoku, row,col)){
+
             System.out.println("Not a valid move! ");
             output = getNextMove(gomoku);
         }
@@ -121,7 +113,7 @@ public class GameController {
     /**
      *This function displays a stylized Gomoku board wherein it creates an array
      * looks through the stones in the list of stones and assigns them to their spot on the array
-     * prints out 0-14 in a the rows and columns
+     * prints out 1-15 in the rows and columns
      * and creates the board marking W for white and B for black
      * @param stones
      */
@@ -138,7 +130,7 @@ public class GameController {
         }
         //create
         System.out.print("   ");
-        for (int i = 0; i < 15; i++) {
+        for (int i = 1; i <= 15; i++) {
             if (i >= 10){
                 System.out.print(i+ " ");
                 continue;
@@ -148,7 +140,7 @@ public class GameController {
         System.out.println();
 
         for (int i = 0; i < 15; i++) {
-            System.out.printf("%2d",i);
+            System.out.printf("%2d",i+1);
             for (int j = 0; j < 15; j++) {
                 if(stoneArray[i][j] == 0){
                     System.out.print(" . ");
