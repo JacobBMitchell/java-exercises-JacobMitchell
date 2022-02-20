@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class GameController {
 
-    Scanner scn = new Scanner(System.in);
+    private Scanner scn = new Scanner(System.in);
     /**
      * The basic game loop takes the game and runs it displaying the board, checking whose move it is
      * and sees if the game is over, once the game finishes displays whose won and shows the winning board
@@ -54,6 +54,10 @@ public class GameController {
         playAgain();
     }
 
+    /**
+     * Asks the user if they want to play again, if they respond 'y' the program runs the main fxn
+     * and re-runs the entire program, else it ends the program.
+     */
     private void playAgain() {
         System.out.print("Want to play again?[y/n] ");
         String choice = scn.nextLine();
@@ -97,7 +101,7 @@ public class GameController {
      * @return
      */
 
-    private boolean validMove(Gomoku gomoku, int row, int col) {
+    public boolean validMove(Gomoku gomoku, int row, int col) {
         if (col > 14 || col < 0 || row >14 || row <0){
             return false;
         }
