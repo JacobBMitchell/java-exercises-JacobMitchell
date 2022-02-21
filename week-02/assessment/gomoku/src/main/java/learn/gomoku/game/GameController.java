@@ -2,6 +2,7 @@ package learn.gomoku.game;
 
 import learn.gomoku.App;
 import learn.gomoku.players.Player;
+import learn.gomoku.game.Hud;
 
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class GameController {
         boolean playing = true;
         System.out.println(gomoku.getCurrent().getName() + "'s turn is first!");
         while (playing){
-            displayBoard(gomoku.getStones());
+            Hud.displayBoard(gomoku.getStones());
 
             Player player = gomoku.getCurrent();
             if (!gomoku.isOver()) {
@@ -32,13 +33,13 @@ public class GameController {
                 if (nextMove == null){
                     break;
                 }
-                if (validMove(gomoku,nextMove.getRow(),nextMove.getColumn())){
+                if (isValidMove(gomoku,nextMove.getRow(),nextMove.getColumn())){
                     break;
                 }
             }
             //if it is a human player the HumanPlayer class returns null, so we would then need to generate a move
             if (nextMove == null && !gomoku.isOver()){
-                nextMove = getNextMove(gomoku);
+                nextMove = Hud.getNextMove(gomoku);
             }
             Result result = gomoku.place(nextMove);
             System.out.println(!(result.getMessage() == null)?result.getMessage():"");
@@ -51,47 +52,47 @@ public class GameController {
         else {
             System.out.println(gomoku.getWinner().getName() + " wins!!!");
         }
-        playAgain();
+        Hud.playAgain();
     }
 
     /**
      * Asks the user if they want to play again, if they respond 'y' the program runs the main fxn
      * and re-runs the entire program, else it ends the program.
      */
-    private void playAgain() {
-        System.out.print("Want to play again?[y/n] ");
-        String choice = scn.nextLine();
-        if(choice.equalsIgnoreCase("y")){
-            App.main(new String[0]);
-        }
-        else {
-            System.out.println("Goodbye!");
-        }
-    }
+//    private void playAgain() {
+//        System.out.print("Want to play again?[y/n] ");
+//        String choice = scn.nextLine();
+//        if(choice.equalsIgnoreCase("y")){
+//            App.main(new String[0]);
+//        }
+//        else {
+//            System.out.println("Goodbye!");
+//        }
+//    }
 
     /**
      * This function asks for integers from the user, and uses the pair of integers to return a stone in the spot chosen
      * @param gomoku
      * @return stone
      */
-    private Stone getNextMove(Gomoku gomoku) {
-        Stone output;
-
-        //System.out.println(gomoku.getCurrent().getName()+"'s Turn");
-        System.out.print("What is the x (col) coordinate of your next move?(1-15): ");
-        int col = Integer.parseInt(scn.nextLine())-1;
-        System.out.print("What is the y (row) coordinate of your next move?(1-15): ");
-        int row = Integer.parseInt(scn.nextLine())-1;
-
-        if (!validMove(gomoku, row,col)){
-
-            System.out.println("Not a valid move! ");
-            output = getNextMove(gomoku);
-        }
-        else {output = new Stone(row, col, gomoku.isBlacksTurn());}
-        return output;
-//        return new Stone(row,col,true);
-    }
+//    private Stone getNextMove(Gomoku gomoku) {
+//        Stone output;
+//
+//        //System.out.println(gomoku.getCurrent().getName()+"'s Turn");
+//        System.out.print("What is the x (col) coordinate of your next move?(1-15): ");
+//        int col = Integer.parseInt(scn.nextLine())-1;
+//        System.out.print("What is the y (row) coordinate of your next move?(1-15): ");
+//        int row = Integer.parseInt(scn.nextLine())-1;
+//
+//        if (!isValidMove(gomoku, row,col)){
+//
+//            System.out.println("Not a valid move! ");
+//            output = getNextMove(gomoku);
+//        }
+//        else {output = new Stone(row, col, gomoku.isBlacksTurn());}
+//        return output;
+////        return new Stone(row,col,true);
+//    }
 
     /**
      *This method checks if it is out of range or is already in the list of stones placed.
@@ -101,7 +102,7 @@ public class GameController {
      * @return
      */
 
-    public boolean validMove(Gomoku gomoku, int row, int col) {
+    public static boolean isValidMove(Gomoku gomoku, int row, int col) {
         if (col > 14 || col < 0 || row >14 || row <0){
             return false;
         }
@@ -122,45 +123,45 @@ public class GameController {
      * @param stones
      */
 
-    private void displayBoard(List<Stone> stones) {
-        int[][] stoneArray = new int[15][15];
-        for(Stone stone: stones){
-            if (stone.isBlack()) {
-                stoneArray[stone.getRow()][stone.getColumn()] = 1;
-            }
-            if (!stone.isBlack()){
-                stoneArray[stone.getRow()][stone.getColumn()] = 2;
-            }
-        }
-        //create
-        System.out.print("   ");
-        for (int i = 1; i <= 15; i++) {
-            if (i >= 10){
-                System.out.print(i+ " ");
-                continue;
-            }
-            System.out.print(i+ "  ");
-        }
-        System.out.println();
-
-        for (int i = 0; i < 15; i++) {
-            System.out.printf("%2d",i+1);
-            for (int j = 0; j < 15; j++) {
-                if(stoneArray[i][j] == 0){
-                    System.out.print(" . ");
-                }
-                else if(stoneArray[i][j] == 1){
-                    System.out.print(" W ");
-                }
-                else if(stoneArray[i][j] == 2){
-                    System.out.print(" B ");
-                }
-
-            }
-            System.out.println();
-
-        }
-    }
+//    private void displayBoard(List<Stone> stones) {
+//        int[][] stoneArray = new int[15][15];
+//        for(Stone stone: stones){
+//            if (stone.isBlack()) {
+//                stoneArray[stone.getRow()][stone.getColumn()] = 1;
+//            }
+//            if (!stone.isBlack()){
+//                stoneArray[stone.getRow()][stone.getColumn()] = 2;
+//            }
+//        }
+//        //create
+//        System.out.print("   ");
+//        for (int i = 1; i <= 15; i++) {
+//            if (i >= 10){
+//                System.out.print(i+ " ");
+//                continue;
+//            }
+//            System.out.print(i+ "  ");
+//        }
+//        System.out.println();
+//
+//        for (int i = 0; i < 15; i++) {
+//            System.out.printf("%2d",i+1);
+//            for (int j = 0; j < 15; j++) {
+//                if(stoneArray[i][j] == 0){
+//                    System.out.print(" . ");
+//                }
+//                else if(stoneArray[i][j] == 1){
+//                    System.out.print(" W ");
+//                }
+//                else if(stoneArray[i][j] == 2){
+//                    System.out.print(" B ");
+//                }
+//
+//            }
+//            System.out.println();
+//
+//        }
+//    }
 
 
 }

@@ -13,15 +13,16 @@ class GameControllerTest {
     @Test
     void testLegalMoves(){
         GameController gc = new GameController();
-        assertTrue(gc.validMove(gomoku,3,4));
-        assertFalse(gc.validMove(gomoku,17,16));
-        assertFalse(gc.validMove(gomoku,-1,3));
+        assertTrue(gc.isValidMove(gomoku,3,4));
+        assertFalse(gc.isValidMove(gomoku,17,16));
+        assertFalse(gc.isValidMove(gomoku,-1,3));
         Stone testStone = new Stone(3,5,true);
         gomoku.place(testStone);
-        assertFalse(gc.validMove(gomoku,3,5));
+        assertFalse(gc.isValidMove(gomoku,3,5));
 
 
     }
+
 
 
 }
