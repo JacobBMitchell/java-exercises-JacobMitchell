@@ -22,7 +22,7 @@ public class Card {
         String cardRankf = this.cardRank.name().substring(0,1) + this.cardRank.name().substring(1).toLowerCase();
         for (int i = 1; i <10; i++){
             if (this.cardRank == Rank.values()[i]){
-                cardRankf = String.valueOf(i);
+                cardRankf = String.valueOf(i+1);
             }
         }
         name += cardRankf;
