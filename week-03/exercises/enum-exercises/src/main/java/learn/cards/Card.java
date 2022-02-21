@@ -8,8 +8,8 @@ public class Card {
     // 1. Add a Suit and Rank field the Card class.
     // 2. Add a constructor that accepts a Suit and Rank and sets the appropriate fields.
     // 3. Add getters for both suit and rank.
-    Suit cardSuit;
-    Rank cardRank;
+    Suit cardSuit; //SPADES
+    Rank cardRank; //THREE
 
     public Card(Suit suits, Rank ranks) {
         this.cardSuit = suits;
@@ -17,12 +17,12 @@ public class Card {
     }
 
 
-    public String getName() {
-        String name = "";
-        String cardRankf = this.cardRank.name().substring(0,1) + this.cardRank.name().substring(1).toLowerCase();
-        for (int i = 1; i <10; i++){
-            if (this.cardRank == Rank.values()[i]){
-                cardRankf = String.valueOf(i+1);
+    public String getName() {//CARDRANK
+        String name = ""; //Return string
+        String cardRankf = this.cardRank.name().charAt(0) + this.cardRank.name().substring(1).toLowerCase();;
+        for (int i = 0; i <9; i++){
+            if (this.cardRank == Rank.values()[i]){ // {TWO, THREE, FOUR,...,TEN}
+                cardRankf = String.valueOf(i+2); //3
             }
         }
         name += cardRankf;
