@@ -10,7 +10,12 @@ import java.util.Scanner;
 
 public class Hud {
     static Scanner scn =  new Scanner(System.in);
-    
+
+    /**
+     * This function asks for integers from the user, and uses the pair of integers to return a stone in the spot chosen
+     * @param gomoku
+     * @return stone
+     */
     public static Stone getNextMove(Gomoku gomoku) {
         Stone output;
 
@@ -30,6 +35,13 @@ public class Hud {
 //        return new Stone(row,col,true);
     }
 
+    /**
+     *This function displays a stylized Gomoku board wherein it creates an array
+     * looks through the stones in the list of stones and assigns them to their spot on the array
+     * prints out 1-15 in the rows and columns
+     * and creates the board marking W for white and B for black
+     * @param stones
+     */
     public static void displayBoard(List<Stone> stones) {
         int[][] stoneArray = new int[15][15];
         for(Stone stone: stones){
@@ -69,7 +81,10 @@ public class Hud {
 
         }
     }
-
+    /**
+     * Asks the user if they want to play again, if they respond 'y' the program runs the main fxn
+     * and re-runs the entire program, else it ends the program.
+     */
     public static void playAgain() {
         System.out.print("Want to play again?[y/n] ");
         String choice = scn.nextLine();
