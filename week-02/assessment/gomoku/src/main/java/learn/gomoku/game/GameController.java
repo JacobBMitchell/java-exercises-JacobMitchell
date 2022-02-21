@@ -1,16 +1,10 @@
 package learn.gomoku.game;
 
-import learn.gomoku.App;
 import learn.gomoku.players.Player;
-import learn.gomoku.game.Hud;
-
-
-import java.util.List;
-import java.util.Scanner;
 
 public class GameController {
 
-    private Scanner scn = new Scanner(System.in);
+
     /**
      * The basic game loop takes the game and runs it displaying the board, checking whose move it is
      * and sees if the game is over, once the game finishes displays whose won and shows the winning board
@@ -62,7 +56,6 @@ public class GameController {
      * @param col
      * @return
      */
-
     public static boolean isValidMove(Gomoku gomoku, int row, int col) {
         if (col > 14 || col < 0 || row >14 || row <0){
             return false;
