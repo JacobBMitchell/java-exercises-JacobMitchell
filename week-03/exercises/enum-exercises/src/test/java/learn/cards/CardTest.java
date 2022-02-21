@@ -1,4 +1,4 @@
-package learn.cards;
+package src.test.java.learn.cards;
 
 import org.junit.jupiter.api.Test;
 

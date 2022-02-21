@@ -1,6 +1,6 @@
-package learn.poker;
+package src.main.java.learn.poker;
 
-import learn.cards.Card;
+import src.main.java.learn.cards.Card;
 
 public class TwoCardHand implements Comparable<TwoCardHand> {
 
