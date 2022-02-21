@@ -24,15 +24,8 @@ public class Hud {
         int col = Integer.parseInt(scn.nextLine())-1;
         System.out.print("What is the y (row) coordinate of your next move?(1-15): ");
         int row = Integer.parseInt(scn.nextLine())-1;
+        return new Stone(row, col, gomoku.isBlacksTurn());
 
-        if (!GameController.isValidMove(gomoku, row,col)){
-
-            System.out.println("Not a valid move! ");
-            output = getNextMove(gomoku);
-        }
-        else {output = new Stone(row, col, gomoku.isBlacksTurn());}
-        return output;
-//        return new Stone(row,col,true);
     }
 
     /**

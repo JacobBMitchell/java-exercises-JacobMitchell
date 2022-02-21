@@ -10,18 +10,18 @@ class GameControllerTest {
     RandomPlayer rp2 = new RandomPlayer();
     Gomoku gomoku = new Gomoku(rp1,rp2);
 
-    @Test
-    void testLegalMoves(){
-        GameController gc = new GameController();
-        assertTrue(gc.isValidMove(gomoku,3,4));
-        assertFalse(gc.isValidMove(gomoku,17,16));
-        assertFalse(gc.isValidMove(gomoku,-1,3));
-        Stone testStone = new Stone(3,5,true);
-        gomoku.place(testStone);
-        assertFalse(gc.isValidMove(gomoku,3,5));
+//    @Test
+//    void testLegalMoves(){
+//        GameController gc = new GameController();
+//        assertTrue(gc.isValidMove(gomoku,3,4));
+//        assertFalse(gc.isValidMove(gomoku,17,16));
+//        assertFalse(gc.isValidMove(gomoku,-1,3));
+//        Stone testStone = new Stone(3,5,true);
+//        gomoku.place(testStone);
+//        assertFalse(gc.isValidMove(gomoku,3,5));
 
 
-    }
+//    }
 
 
 
