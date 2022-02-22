@@ -10,6 +10,12 @@ class PanagramTest {
         assertFalse(png.isPanagram("While Jodi is fun, she is reserved and respectful"));
         assertTrue(png.isPanagram("the quick brown fox jumped over the lazy dogs."));
 
+        int nums[] = {0,1,0,2,3};
+        for (int i: nums){
+            if (i== 0){
+
+            }
+        }
         //right clicked on the red
         // context actions
         // add maven dependency
