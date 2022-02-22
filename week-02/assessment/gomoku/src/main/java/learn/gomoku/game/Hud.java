@@ -36,7 +36,7 @@ public class Hud {
      * @param stones
      */
     public static void displayBoard(List<Stone> stones) {
-        int[][] stoneArray = new int[15][15];
+        int[][] stoneArray = new int[Gomoku.WIDTH][Gomoku.WIDTH];
         for(Stone stone: stones){
             if (stone.isBlack()) {
                 stoneArray[stone.getRow()][stone.getColumn()] = 1;
