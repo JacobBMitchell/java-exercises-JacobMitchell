@@ -91,9 +91,8 @@ public class Hud {
 
 
     public static Player selectPlayer() {
-        boolean notSet = true;
         Player playerN = null;
-        while(notSet) {
+        while(playerN == null) {
             System.out.print("Would you like to play(1) or have a random player play(2)?");
             int choice = scn.nextInt();
             scn.nextLine();
