@@ -30,7 +30,9 @@ public class GameController {
                 nextMove = Hud.getNextMove(gomoku);
             }
             Result result = gomoku.place(nextMove);
-            System.out.println((result.getMessage() != null)?result.getMessage():"");
+            if (result.getMessage() != null) {
+                System.out.println(result.getMessage());
+            }
 //            playing = result.isSuccess(); //fails when an error msg is introduced like duplicate move
         }
         Hud.displayBoard(gomoku.getStones());
