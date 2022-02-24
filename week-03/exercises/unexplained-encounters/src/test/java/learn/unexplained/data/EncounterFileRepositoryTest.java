@@ -18,7 +18,7 @@ class EncounterFileRepositoryTest {
             new Encounter(3, EncounterType.SOUND, "2020-03-01", "short test #3", 1)
     };
 
-    EncounterRepository repository = new EncounterFileRepository(TEST_PATH);
+    EncounterRepository repository = new EncounterFileRepository(TEST_PATH);//
 
     @BeforeEach
     void setup() throws DataAccessException {

@@ -6,11 +6,22 @@ import learn.unexplained.models.Encounter;
 import learn.unexplained.models.EncounterType;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class EncounterServiceTest {
 
     EncounterService service = new EncounterService(new EncounterRepositoryDouble());
+
+    @Test
+    void shouldFindAll() throws DataAccessException {
+        Encounter enc = new Encounter(2, EncounterType.CREATURE, "1/1/2015", "test description", 1);
+        List<Encounter> encs= new ArrayList<>();
+        encs.add(enc);
+        assertEquals(encs,service.findAll());
+    }
 
     @Test
     void shouldNotAddNull() throws DataAccessException {
@@ -74,5 +85,39 @@ class EncounterServiceTest {
         EncounterResult result = new EncounterResult();
         result.addErrorMessage(message);
         return result;
+    }
+
+    @Test
+    void findByType() throws DataAccessException{
+        List<Encounter> ufoSightings = service.findByType(EncounterType.CREATURE);
+        assertEquals(1,ufoSightings.size());
+        List<Encounter> nullSightings = service.findByType(null);
+        assertEquals(0,nullSightings.size());
+    }
+
+    @Test
+    void deleteById() throws DataAccessException {
+        EncounterResult result = service.deleteById(3);
+        assertFalse(result.isSuccess());
+        EncounterResult result1 = service.deleteById(2);
+        assertTrue(result1.isSuccess());
+    }
+
+    @Test
+    void update() throws DataAccessException {
+        Encounter enc = new Encounter(2,EncounterType.CREATURE,"Today","OMG IT WAS SO SCARY",2);
+        EncounterResult result = service.update(enc);
+        assertTrue(result.isSuccess());
+
+        Encounter enc2 = new Encounter(3,EncounterType.CREATURE,"Today","OMG IT WAS SO SCARY",2);
+        EncounterResult result1 = service.update(enc2);
+        assertFalse(result1.isSuccess());
+        assertEquals("Encounter not found.",result1.getMessages().get(0));
+
+        Encounter enc3 = new Encounter(2, EncounterType.CREATURE, "1/1/2015", "test description", 1);
+        EncounterResult result2 = service.update(enc3);
+        assertFalse(result2.isSuccess());
+        assertEquals("This encounter has already been created",result2.getMessages().get(0));
+
     }
 }
