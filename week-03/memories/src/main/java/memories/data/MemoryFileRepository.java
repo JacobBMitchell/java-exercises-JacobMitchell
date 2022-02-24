@@ -27,7 +27,7 @@ public class MemoryFileRepository implements MemoryRepository {
                 }
             }
         } catch (FileNotFoundException ex) {
-
+            throw new DataAccessException("Could not open the file path:  " +filePath, ex);
         } catch (IOException ex) {
             throw new DataAccessException("Could not open the file path: " + filePath, ex);
         }

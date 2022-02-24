@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class EncounterFileRepositoryTest {
 
-    static final String TEST_PATH = "./data/encounters-test.csv";
+    static final String TEST_PATH = "./unexplained-encounters/data/encounters-test.csv";
     final Encounter[] testEncounters = new Encounter[]{
             new Encounter(1, EncounterType.UFO, "2020-01-01", "short test #1", 1),
             new Encounter(2, EncounterType.CREATURE, "2020-02-01", "short test #2", 1),
@@ -26,7 +26,7 @@ class EncounterFileRepositoryTest {
             repository.deleteById(e.getEncounterId());
         }
 
-        for (Encounter e : testEncounters) {
+        for (Encounter e : testEncounters) { //rebuilds document from testEncounters above
             repository.add(e);
         }
     }
@@ -54,4 +54,28 @@ class EncounterFileRepositoryTest {
         assertEquals(4, actual.getEncounterId());
     }
 
+    @Test
+    void shouldDeleteById() throws DataAccessException {
+        assertTrue(repository.deleteById(1));
+        assertFalse(repository.deleteById(4));
+        assertEquals(2, repository.findAll().size());
+    }
+
+    @Test
+    void shouldFindByType() throws DataAccessException {
+        assertEquals(EncounterType.UFO, repository.findByType(EncounterType.UFO).get(0).getType());
+        assertNotEquals(EncounterType.UFO,repository.findByType(EncounterType.CREATURE).get(0).getType());
+    }
+
+    @Test
+    void shouldUpdate() throws DataAccessException {
+        List<Encounter> all = repository.findAll();
+        Encounter myEncounter = all.get(1);
+        myEncounter.setOccurrences(2);
+//        myEncounter.setDescription("It was so spooky I saw a ghost! ");
+//        myEncounter.setType(EncounterType.VISION);
+//        myEncounter.setWhen("3 minutes ago! ");
+//        myEncounter.setOccurrences(2);
+        assertTrue(repository.update(myEncounter));
+    }
 }

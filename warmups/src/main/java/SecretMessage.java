@@ -48,10 +48,12 @@ public class SecretMessage {
             fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
             System.out.println(br.readLine());
+            fr.close();
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 }
