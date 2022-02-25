@@ -8,7 +8,7 @@ import memories.ui.View;
 
 public class App {
     public static void main(String[] args) {
-        MemoryFileRepository repository = new MemoryFileRepository("./data/memories.txt");
+        MemoryFileRepository repository = new MemoryFileRepository("./src/main/java/memories/data/memories.txt");
         MemoryService service = new MemoryService(repository);
 
         ConsoleIO io = new ConsoleIO();
