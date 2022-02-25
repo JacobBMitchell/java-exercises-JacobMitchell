@@ -1,7 +1,7 @@
-package solarfarm.controller;
+package solarfarm.ui;
 
 import solarfarm.domain.SolarFarmService;
-import solarfarm.ui.View;
+
 
 public class Controller {
     SolarFarmService service;

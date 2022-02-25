@@ -1,4 +1,4 @@
 package solarfarm.data;
 
-public class SolarFarmFileRepo {
+public class SolarFarmFileRepo implements SolarFarmRepo{
 }
