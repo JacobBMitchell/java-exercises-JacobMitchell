@@ -11,4 +11,7 @@ public class Controller {
         this.service = service;
         this.view = view;
     }
+    public void run() {
+        System.out.println("running");
+    }
 }
