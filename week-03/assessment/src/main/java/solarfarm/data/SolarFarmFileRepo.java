@@ -103,9 +103,11 @@ public class SolarFarmFileRepo implements SolarFarmRepo{
     public boolean deleteBySRC(String section, int row, int col) throws DataException {
         List<SolarPanel> panels = findAll();
         SolarPanel panelToRemove = getBySRC(section,row,col);
-        panels.remove(panelToRemove);
-        writeToFile(panels);
-        return true;
+        if(panels.remove(panelToRemove)) {
+            writeToFile(panels);
+            return true;
+        }
+        return false;
     }
 
     private void writeToFile(List<SolarPanel> panels)throws DataException{

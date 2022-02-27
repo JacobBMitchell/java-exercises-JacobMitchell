@@ -83,4 +83,15 @@ public class SolarPanel {
     public int hashCode() {
         return Objects.hash(section, row, col, year, material, isTracking);
     }
+
+    @Override
+    public String toString() {
+        return "SolarPanel: " +
+                "section: " + section +
+                ", row: " + row +
+                ", col: " + col +
+                ", year: " + year +
+                ", material: " + material.getMat() +
+                ", isTracking: " + isTracking;
+    }
 }
