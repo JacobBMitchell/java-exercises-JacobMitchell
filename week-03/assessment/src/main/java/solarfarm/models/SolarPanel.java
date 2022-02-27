@@ -86,7 +86,7 @@ public class SolarPanel {
 
     @Override
     public String toString() {
-        return "SolarPanel: " +
+        return "SolarPanel:: " +
                 "section: " + section +
                 ", row: " + row +
                 ", col: " + col +

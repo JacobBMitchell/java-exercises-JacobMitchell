@@ -3,11 +3,12 @@ package solarfarm.ui;
 import solarfarm.models.Material;
 import solarfarm.models.SolarPanel;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class View {
-    private Scanner scn = new Scanner(System.in);
+    private final Scanner scn = new Scanner(System.in);
 
     public void printHeader(String message){
         int length = message.length();
@@ -32,14 +33,14 @@ public class View {
         System.out.println("5: Find panel by section, row, column");
         System.out.println("6: Remove panel by section, row, column");
         System.out.println("0: Exit");
-        int selection = getInt("Choice: ",0,6);
-        return selection;
+        return getInt("Choice: ",0,6);
     }
 
     private int getInt(String msg){
-        int number= -1;
+        int number;
         try{
-            number = Integer.parseInt(getString(msg));
+            String input = getString(msg);
+            number = Integer.parseInt(input);
         } catch (NumberFormatException nfe){
             println("Not a number");
             number = getInt(msg);
@@ -49,8 +50,7 @@ public class View {
 
     private String getString(String msg) {
         print(msg);
-        String input = scn.nextLine();
-        return input;
+        return scn.nextLine();
     }
 
     private void print(String msg) {
@@ -80,6 +80,9 @@ public class View {
         SRC.setCol(col);
         return SRC;
     }
+    public boolean tryAgain(String msg){
+        return getString(msg).equalsIgnoreCase("y");
+    }
 
     public SolarPanel createPanel() {
         SolarPanel panel = new SolarPanel();
@@ -99,12 +102,29 @@ public class View {
         return panel;
     }
 
+    public SolarPanel createUpdate(SolarPanel oldPanel) {
+        SolarPanel panel = new SolarPanel();
+        String section = getString("Input Section (" + oldPanel.getSection() + "): ");
+        int row = getInt("Input Row (" +oldPanel.getRow() + "): ",1,250); //TODO allow for blank input (default)
+        int col = getInt("Input Column (" +oldPanel.getCol() + "): ",1,250);
+        int year = getInt("Input Year ("+ oldPanel.getYear() +"): ",1956,2022);
+        println("("+oldPanel.getMaterial().getMat()+")");
+        Material mat = getMaterial();
+        print("("+oldPanel.isTracking()+") ");
+        boolean doesTrack = doesTrack();
+        panel.setSection(section.isBlank()? oldPanel.getSection() :section);
+        panel.setRow(row);
+        panel.setCol(col);
+        panel.setYear(year);
+        panel.setMaterial(mat);
+        panel.setTracking(doesTrack);
+
+        return panel;
+    }
+
     private boolean doesTrack() {
         String choice = getString("Does it track?[y/n] ");
-        if (choice.equalsIgnoreCase("y")){
-            return true;
-        }
-        return false;
+        return choice.equalsIgnoreCase("y");
     }
 
     private Material getMaterial() {
@@ -132,4 +152,14 @@ public class View {
         }
     }
 
+    public void displayAllSections(List<SolarPanel> all) {
+        printHeader("These are all the sections");
+        List<String> sections = new ArrayList<>();
+        for (SolarPanel panel: all){
+            if (!sections.contains(panel.getSection())){
+                sections.add(panel.getSection());
+                println(panel.getSection());
+            }
+        }
+    }
 }

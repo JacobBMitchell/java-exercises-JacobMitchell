@@ -30,32 +30,15 @@ public class Controller {
         boolean exit = false;
         while(!exit){
             int choice = view.displayMenu(); //Menu options
-            switch (choice){
-                case 0:
-                    exit = true;
-                    break;
-                case 1:
-                    viewAll();
-                    break;
-                case 2:
-                    viewBySection();
-                    break;
-                case 3:
-                    addPanel();
-                    break;
-                case 4:
-                    updatePanel();
-                    break;
-                case 5:
-                    findBySRC();
-                    break;
-                case 6:
-                    removeBySRC();
-                    break;
-                default:
-                    view.println("Not a valid input. ");
-                    break;
-
+            switch (choice) {
+                case 0 -> exit = true;
+                case 1 -> viewAll();
+                case 2 -> viewBySection();
+                case 3 -> addPanel();
+                case 4 -> updatePanel();
+                case 5 -> findBySRC();
+                case 6 -> removeBySRC();
+                default -> view.println("Not a valid input. ");
             }
         }
     }
@@ -86,9 +69,18 @@ public class Controller {
 
     private void updatePanel() throws DataException {
         //get old panel
+        view.printHeader("Choose a panel to update by its section, row, and column");
         SolarPanel oldPanel = view.getSRC();
-        SolarPanel newPanel = view.createPanel();
-        oldPanel = service.getBySRC(oldPanel.getSection(), oldPanel.getRow(),oldPanel.getCol()).getPanel();
+        SolarFarmResult result1 = service.getBySRC(oldPanel.getSection(), oldPanel.getRow(),oldPanel.getCol());
+        if (!result1.noErrors()){
+            view.displayErrors(result1.getErrors());
+            if(!view.tryAgain("Try to update again[y/n]: ")){
+                return;
+            }
+            updatePanel();
+        }
+        view.printHeader("Enter updated panel");
+        SolarPanel newPanel = view.createUpdate(oldPanel);
         SolarFarmResult result = service.update(newPanel,oldPanel);
         if(result.noErrors()){
             view.println("Panel Updated! ");
@@ -111,6 +103,7 @@ public class Controller {
     }
 
     private void viewBySection() throws DataException {
+        view.displayAllSections(service.getAll());
         String section = view.getSection();
         view.displayPanels(service.getBySection(section));
     }

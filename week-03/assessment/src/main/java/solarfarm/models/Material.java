@@ -7,7 +7,7 @@ public enum Material {
     CADMIUM_TELLURIDE("Cadmium telluride"),
     COPPER_INDIUM_GALLIUM_SELENIDE("Copper indium gallium selenide");
 
-    private String mat;
+    private final String mat;
     Material(String mat) {
         this.mat = mat;
     }
