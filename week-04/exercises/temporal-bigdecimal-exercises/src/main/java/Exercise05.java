@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public class Exercise05 {
@@ -12,7 +13,19 @@ public class Exercise05 {
     // Payments start on the first Friday of the year.
     // Given a date, calculate payments expected from that date until the end of the year.
     BigDecimal calculateGiftsTilEndOfYear(LocalDate date) {
-        return null;
+        BigDecimal pay = new BigDecimal(0);
+        LocalDate thisYear = LocalDate.of(date.getYear(),1,1);
+        LocalDate nextYear = LocalDate.of(date.getYear()+1, 1,1);
+        while (thisYear.getDayOfWeek() != DayOfWeek.FRIDAY){
+            thisYear = thisYear.plusDays(1);
+        }
+        while (thisYear.isBefore(nextYear)){
+            if(thisYear.isAfter(date)){
+                pay = pay.add(BigDecimal.valueOf(10));
+            }
+            thisYear = thisYear.plusDays(14);
+        }
+        return pay;
     }
 
     // 2. Your Godmother is getting quirky. She adjusted her payment schedule.
@@ -24,7 +37,19 @@ public class Exercise05 {
     // July 12 == $12
     // Given a date, calculate payments expected from that date until the end of the year.
     BigDecimal calculateQuirkyGiftsTilEndOfYear(LocalDate date) {
-        return null;
+        BigDecimal pay = new BigDecimal(0);
+        LocalDate thisYear = LocalDate.of(date.getYear(),1,1);
+        LocalDate nextYear = LocalDate.of(date.getYear()+1, 1,1);
+        while (thisYear.getDayOfWeek() != DayOfWeek.FRIDAY){
+            thisYear = thisYear.plusDays(1);
+        }
+        while (thisYear.isBefore(nextYear)){
+            if(thisYear.isAfter(date)){
+                pay = pay.add(BigDecimal.valueOf(thisYear.getDayOfMonth()));
+            }
+            thisYear = thisYear.plusDays(14);
+        }
+        return pay;
     }
 
 }

@@ -17,7 +17,7 @@ public class NonOverlappingMicroLeaseSchedule {
      * Rules:
      * - if lease is null, return false
      * - if lease.getStart or lease.getEnd is null, return false
-     * - if lease.getStart is later then lease.getEnd, return false
+     * - if lease.getStart is later than lease.getEnd, return false
      * - if the lease overlaps any other lease in leases, return false
      * - otherwise, add to leases and return true
      *
@@ -26,6 +26,25 @@ public class NonOverlappingMicroLeaseSchedule {
      * false if not valid
      */
     public boolean add(MicroLease lease) {
+        if (lease == null || lease.getEnd() == null || lease.getStart() == null) {
+            return false;
+        }
+        if (lease.getStart().isAfter(lease.getEnd())){
+            return false;
+        }
+        int i = leases.size();
+        for (MicroLease l: leases){
+            if (lease.getStart().isAfter(l.getEnd()) || lease.getStart().isEqual(l.getEnd()) ||
+                    lease.getEnd().isBefore(l.getStart()) || lease.getEnd().isEqual(l.getStart())){
+                i--;
+            }
+        }
+        if (i == 0){
+            leases.add(lease);
+            return true;
+        }
         return false;
+
+
     }
 }
