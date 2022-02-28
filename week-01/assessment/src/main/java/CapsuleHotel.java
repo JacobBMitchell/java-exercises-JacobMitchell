@@ -19,7 +19,7 @@ public class CapsuleHotel {
         boolean running = true;
         while(running){
             printMenuOptions();
-            System.out.print("Choose an option [1-4]: ");
+            System.out.print("Choose an option [1-4]: "); // hi
             int choice = scn.nextInt();
             scn.nextLine();
             switch (choice){
