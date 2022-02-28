@@ -1,3 +1,5 @@
+package warmups;
+
 import java.util.Scanner;
 
 public class Panagram {

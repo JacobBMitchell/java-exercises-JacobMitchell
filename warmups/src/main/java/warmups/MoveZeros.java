@@ -1,3 +1,5 @@
+package warmups;
+
 import java.util.Arrays;
 
 public class MoveZeros {

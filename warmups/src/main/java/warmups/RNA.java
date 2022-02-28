@@ -1,3 +1,5 @@
+package warmups;
+
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -8,7 +10,7 @@ public class RNA { // {a:u, u:a
     public static void main(String[] args) {
 
         //String sequence ="aucg";
-        System.out.print("Provide your RNA sequence! ");
+        System.out.print("Provide your warmups.RNA sequence! ");
         String sequence = scn.nextLine();
 
         sequence = sequence.toLowerCase(Locale.ROOT);

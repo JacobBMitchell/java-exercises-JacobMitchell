@@ -1,3 +1,5 @@
+import warmups.Panagram;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PanagramTest {
