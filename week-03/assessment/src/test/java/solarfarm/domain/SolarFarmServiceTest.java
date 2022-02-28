@@ -43,17 +43,19 @@ class SolarFarmServiceTest {
     }
 
     @Test
-    void getBySection() throws DataException {
+    void getBySectionFindsCorrect() throws DataException {
         List<SolarPanel> homePanels = service.getBySection("Home");
-        assertEquals(homePanels.get(0),sp1);
+        assertEquals(homePanels.get(0), sp1);
         assertEquals(3, homePanels.size());
-
+    }
+    @Test
+    void getBySectionDoesNotFindWrongData() throws DataException{
         assertEquals(0, service.getBySection("NoWhere").size());
 
     }
 
     @Test
-    void add() throws DataException {
+    void shouldAddNewData() throws DataException {
         SolarPanel sp5 = new SolarPanel("Away", 1, 2, 2019, Material.AMORPHOUS_SILICON, true);
         SolarFarmResult result1 = service.add(sp5);
         List<SolarPanel> panels = service.getAll();
@@ -61,16 +63,19 @@ class SolarFarmServiceTest {
         assertEquals(5, panels.size());
         assertEquals(0, result1.getErrors().size());
         assertEquals(sp5, result1.getPanel());
-
+    }
+    @Test
+    void shouldNotAddExistingData() throws DataException {
+        List<SolarPanel> panels = service.getAll();
         SolarFarmResult result2 = service.add(sp1);
         panels = service.getAll();
-        assertEquals(5, panels.size()); // no change in size
+        assertEquals(4, panels.size()); // no change in size
         assertEquals("Panel in section: Home, row: 1, column: 1 already exists", result2.getErrors().get(0));
         assertNull(result2.getPanel());
     }
 
     @Test
-    void validation() throws DataException {
+    void shouldValidateNewData() throws DataException {
         SolarPanel sp6 = new SolarPanel("", -1,251,2023,Material.AMORPHOUS_SILICON,true);
         SolarFarmResult reuslt3= service.add(sp6);
         assertNull(reuslt3.getPanel());
@@ -91,12 +96,13 @@ class SolarFarmServiceTest {
         assertTrue(result.noErrors());
         assertEquals(sp3new, result.getPanel());
 
+//should not overwrite existing
         SolarPanel sp3new2 = new SolarPanel("Home", 1,3, 2020,Material.CADMIUM_TELLURIDE,false);
         SolarFarmResult result1 = service.update(sp3new2,sp3new);
         assertFalse(result1.noErrors());
         assertNull(result1.getPanel());
         assertEquals("Panel already exists",result1.getErrors().get(0)); //break up for each attempt
-
+//should not update over Nonexistant panel
         SolarPanel toAdd = new SolarPanel("Home", 1,6, 2020,Material.CADMIUM_TELLURIDE,false);
         SolarPanel spNotAdded = new SolarPanel("Home", 1,5, 2020,Material.CADMIUM_TELLURIDE,false);
         SolarFarmResult result3 = service.update(toAdd,spNotAdded);
