@@ -72,12 +72,13 @@ public class Controller {
         view.printHeader("Choose a panel to update by its section, row, and column");
         SolarPanel oldPanel = view.getSRC();
         SolarFarmResult result1 = service.getBySRC(oldPanel.getSection(), oldPanel.getRow(),oldPanel.getCol());
+        oldPanel = result1.getPanel();
         if (!result1.noErrors()){
             view.displayErrors(result1.getErrors());
             if(!view.tryAgain("Try to update again[y/n]: ")){
                 return;
             }
-            updatePanel();
+            updatePanel(); // calls self
         }
         view.printHeader("Enter updated panel");
         SolarPanel newPanel = view.createUpdate(oldPanel);

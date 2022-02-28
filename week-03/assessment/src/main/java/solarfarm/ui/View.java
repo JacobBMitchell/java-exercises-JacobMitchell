@@ -105,8 +105,8 @@ public class View {
     public SolarPanel createUpdate(SolarPanel oldPanel) {
         SolarPanel panel = new SolarPanel();
         String section = getString("Input Section (" + oldPanel.getSection() + "): ");
-        int row = getInt("Input Row (" +oldPanel.getRow() + "): ",1,250); //TODO allow for blank input (default)
-        int col = getInt("Input Column (" +oldPanel.getCol() + "): ",1,250);
+        int row = passInt("Input Row (" +oldPanel.getRow() + "): ",1,250, oldPanel.getRow()); //TODO allow for blank input (default)
+        int col = passInt("Input Column (" +oldPanel.getCol() + "): ",1,250,oldPanel.getCol());
         int year = getInt("Input Year ("+ oldPanel.getYear() +"): ",1956,2022);
         println("("+oldPanel.getMaterial().getMat()+")");
         Material mat = getMaterial();
@@ -120,6 +120,21 @@ public class View {
         panel.setTracking(doesTrack);
 
         return panel;
+    }
+
+    public int passInt(String msg , int min, int max, int prior){
+        String input = getString(msg);
+        if (input.isBlank() || input.isEmpty()){
+            return prior;
+        }
+        int number;
+        try {
+            number = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            print("Not a valid number");
+            number = getInt(msg, min,max);
+        }
+        return number;
     }
 
     private boolean doesTrack() {
