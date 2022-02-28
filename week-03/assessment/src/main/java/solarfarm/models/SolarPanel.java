@@ -95,3 +95,5 @@ public class SolarPanel {
                 ", isTracking: " + isTracking;
     }
 }
+
+

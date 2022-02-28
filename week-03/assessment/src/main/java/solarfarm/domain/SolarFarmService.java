@@ -51,6 +51,10 @@ public class SolarFarmService {
             if (panel.equals(newPanel)){
                 result.addErrors("Panel already exists");
             }
+            if (panel.getSection().equals(newPanel.getSection()) && panel.getRow() == newPanel.getRow() &&
+                    panel.getCol() == newPanel.getCol() && !oldPanel.equals(panel)){
+                result.addErrors("A Panel already exists there");
+            }
             if (panel.equals(oldPanel)){
                 hasOldPanel = true;
             }

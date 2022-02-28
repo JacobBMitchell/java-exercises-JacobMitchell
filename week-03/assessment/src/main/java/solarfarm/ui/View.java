@@ -105,13 +105,13 @@ public class View {
     public SolarPanel createUpdate(SolarPanel oldPanel) {
         SolarPanel panel = new SolarPanel();
         String section = getString("Input Section (" + oldPanel.getSection() + "): ");
-        int row = passInt("Input Row (" +oldPanel.getRow() + "): ",1,250, oldPanel.getRow()); //TODO allow for blank input (default)
+        int row = passInt("Input Row (" +oldPanel.getRow() + "): ",1,250, oldPanel.getRow());
         int col = passInt("Input Column (" +oldPanel.getCol() + "): ",1,250,oldPanel.getCol());
-        int year = getInt("Input Year ("+ oldPanel.getYear() +"): ",1956,2022);
+        int year = passInt("Input Year ("+ oldPanel.getYear() +"): ",1956,2022,oldPanel.getYear());
         println("("+oldPanel.getMaterial().getMat()+")");
-        Material mat = getMaterial();
+        Material mat = passMaterial(oldPanel.getMaterial());
         print("("+oldPanel.isTracking()+") ");
-        boolean doesTrack = doesTrack();
+        boolean doesTrack = passDoesTrack(oldPanel.isTracking());
         panel.setSection(section.isBlank()? oldPanel.getSection() :section);
         panel.setRow(row);
         panel.setCol(col);
@@ -120,6 +120,29 @@ public class View {
         panel.setTracking(doesTrack);
 
         return panel;
+    }
+
+    private boolean passDoesTrack(boolean tracking) {
+        String choice = getString("Does it track?[y/n] ");
+        if (choice.isBlank()){
+            return tracking;
+        }
+        return choice.equalsIgnoreCase("y");
+    }
+
+    private Material passMaterial(Material material) {
+        int i = 1;
+        int prior = 1;
+        for(Material m: Material.values()){
+            println(i +": "+ m.getMat());
+            if (m == material){
+                prior = i;
+            }
+            i++;
+
+        }
+        int choice = passInt("Pick a Material: ",1,5,prior);
+        return Material.values()[choice-1];
     }
 
     public int passInt(String msg , int min, int max, int prior){
@@ -159,12 +182,18 @@ public class View {
     public void displayPanels(List<SolarPanel> panels) {
         if (panels.size() != 0) {
             for (SolarPanel panel : panels) {
-                println(panel.toString());
+                panelDisplay(panel);
             }
         }
         else{
             println("There are no panels");
         }
+    }
+
+    public void panelDisplay(SolarPanel panel){
+        println("Section: " + panel.getSection() + ", Row: " + panel.getRow() + ", Column: " + panel.getCol());
+        println("Year: "+panel.getYear()+", Material: "+panel.getMaterial().getMat()+", Tracking: "+panel.isTracking());
+        println("");
     }
 
     public void displayAllSections(List<SolarPanel> all) {

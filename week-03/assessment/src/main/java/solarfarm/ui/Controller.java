@@ -60,7 +60,7 @@ public class Controller {
         SolarPanel mockPanel = view.getSRC();
         SolarFarmResult result = service.getBySRC(mockPanel.getSection(), mockPanel.getRow(), mockPanel.getCol());
         if (result.noErrors()){
-            view.println(result.getPanel().toString());
+            view.panelDisplay(result.getPanel());
         }
         else {
             view.displayErrors(result.getErrors());

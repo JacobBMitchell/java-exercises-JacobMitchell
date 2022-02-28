@@ -95,7 +95,7 @@ class SolarFarmServiceTest {
         SolarFarmResult result1 = service.update(sp3new2,sp3new);
         assertFalse(result1.noErrors());
         assertNull(result1.getPanel());
-        assertEquals("Panel already exists",result1.getErrors().get(0));
+        assertEquals("Panel already exists",result1.getErrors().get(0)); //break up for each attempt
 
         SolarPanel toAdd = new SolarPanel("Home", 1,6, 2020,Material.CADMIUM_TELLURIDE,false);
         SolarPanel spNotAdded = new SolarPanel("Home", 1,5, 2020,Material.CADMIUM_TELLURIDE,false);
