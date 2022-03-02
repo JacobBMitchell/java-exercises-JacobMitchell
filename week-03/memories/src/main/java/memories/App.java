@@ -8,6 +8,7 @@ import memories.ui.View;
 
 public class App {
     public static void main(String[] args) {
+        ApplicationContext container = new ClassPathXmlApplicationContext("dependency-config.xml");
         MemoryFileRepository repository = new MemoryFileRepository("./src/main/java/memories/data/memories.txt");
         MemoryService service = new MemoryService(repository);
 

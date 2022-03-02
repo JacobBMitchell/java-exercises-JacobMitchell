@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+    Define "beans" here.
+    A bean definition registers an instance of a data type with the DI container.
+    -->
+    <bean id="location" class="learn.battle.environment.Location">
+        <constructor-arg value="a Mall"/>
+    </bean>
+
+    <bean id="Fighter" class="learn.battle.fighters.Fighter">
+        <constructor-arg value="Morrigan"/>
+        <property name="innitiative" value="16"/>
+    </bean>
+
+    <bean id="Fighter2" class="learn.battle.fighters.Fighter">
+        <constructor-arg value="SubZero"/>
+        <property name="innitiative" value="8"/>
+    </bean>
+
+    <bean id="Fighter3" class="learn.battle.fighters.Fighter">
+        <constructor-arg value="Geralt the Witcher"/>
+        <property name="innitiative" value="19"/>
+    </bean>
+
+    <bean id="announcer" class="learn.battle.announcers.ProperAnnouncer"> </bean>
+    <bean class="learn.battle.environment.Battle">
+        <constructor-arg ref="location"/>
+        <constructor-arg>
+            <list>
+                <ref bean="Fighter"/>
+                <ref bean="Fighter2"/>
+                <ref bean="Fighter3"/>
+            </list>
+        </constructor-arg>
+        <property name="announcer" ref="announcer"/>
+    </bean>
+
+
+</beans>

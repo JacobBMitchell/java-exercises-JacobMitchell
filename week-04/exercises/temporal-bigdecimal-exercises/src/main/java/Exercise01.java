@@ -34,12 +34,12 @@ public class Exercise01 {
     // if the date is Friday, don't count it.
     LocalDate fiveFridaysFromDate(LocalDate date) {
         if (date.getDayOfWeek() == DayOfWeek.FRIDAY){
-            return date.plusDays(35);
+            return date.plusWeeks(5);
         }
         while (date.getDayOfWeek() != DayOfWeek.FRIDAY){
            date = date.plusDays(1);
         }
-        return date.plusDays(28);
+        return date.plusWeeks(4);
     }
 
     // 5. given a date and a count,
@@ -56,6 +56,7 @@ public class Exercise01 {
         }
         if (temp.getDayOfWeek() == DayOfWeek.FRIDAY){
             fridays.remove(0);
+            fridays.add(date.plusWeeks(fridayCount));
         }
         return fridays;
     }
