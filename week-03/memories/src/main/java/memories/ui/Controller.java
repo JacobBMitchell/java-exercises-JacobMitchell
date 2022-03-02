@@ -4,15 +4,18 @@ import memories.data.DataAccessException;
 import memories.domain.MemoryResult;
 import memories.domain.MemoryService;
 import memories.models.Memory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class Controller {
 
     private final View view;
     private final MemoryService service;
 
-
+    @Autowired
     public Controller(View view, MemoryService service) {
         this.view = view;
         this.service = service;

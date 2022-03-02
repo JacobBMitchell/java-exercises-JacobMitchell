@@ -3,9 +3,11 @@ package memories.domain;
 import memories.data.DataAccessException;
 import memories.data.MemoryRepository;
 import memories.models.Memory;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MemoryService {
 
     private final MemoryRepository repository;
