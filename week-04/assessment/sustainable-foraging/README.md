@@ -1,34 +1,74 @@
-Planning
-Plan before you write any code
-Questions your plan should answer...
-What are the requirements for the project?
-What features are (supposedly) completed?
-What features need to be added?
-How will I review the provided code?
-How will I ensure that the provided code meets the requirements for each implemented feature?
-How will I document issues or bugs as I discover them?
-To implement the new features, what packages, classes, and methods will I write?
-What unit tests do I need to write to ensure that my code behaves as expected?
-Do I have to do any research?
-Are there any unknowns? What do I need to do to get clarity?
-What are my primary tasks?
-How long do I estimate each of those tasks will take?
-Are there any dependencies between tasks? What order do I need to complete the tasks in?
+#Forager Catalog
 
-Think of planning as documenting your thought process as you review and strategize about the project
-Write out a list of tasks
-Estimate each task
-Track how long each task actually takes
-Optionally use Trello to manage your project
-Acceptable planning document formats
-Markdown file in your project
-Google Doc
-Word Doc
-If you want to use another document format, ask your code reviewer for approval before getting started
+##High Level
+- Fix existing bugs
+- Create and check tests
+- Implement any unfinished features
+- Add 'add a Forager'
+- Create a report that displays the mass of each item on a day
+- Create a report that displays the total value of each Category on one day
+- Implement Spring Dependency (check)
 
-Misc
-Set time expectations
-This assessment is similar in scope to the Solar Farm assessment though some of the time spent designing and writing code will be spent reviewing, analyzing, and debugging the provided code
-Submit your plan to your code reviewer this afternoon
-We'll publish the review groupings in Teams
-We're available to answer questions or review your plans via Teams if you get stuck or are unsure about your plan
+##Requirements
+- Detailed test methods
+- New Test methods for both affirmative and negative inputs
+- all types of assert correct and assert incorrect
+- Methods that fill in gaps in the code
+  - validations, and implementations that were overlooked
+- New Methods to implement add a Forager in:
+  - data layer
+  - service layer
+  -view layer 
+- New methods to create each type of report using streams()
+  - mass of item on a day
+    - Find all the items on a day already saved, sum the mass
+      print all items
+  - total value of each category on a day
+    - On a given day(file), group all of each category, sum the
+    mass of each item, multiply by rate and add to total
+- An xml file and ApplicationContext class to implement spring
+     clean up App class, and create xml file.
+
+##Plan
+- Run Code initially, follow errors using debugger.(10 mins)
+- Scan through code looking for any unimplemented features, implement those (1-2 hour)
+- Scan through tests to make sure all test cases are met, fill in tests (1-3 hours)
+- In the data layer provide an add Forager method (15-30 mins)
+- Make sure nothing not accepted gets to the data layer in add Forager(30 mins)
+- Implement it in the controller and view (30 mins)
+- In Controller take existing data and display it in view to create
+each type of report (30 mins - 1 hour)
+- In the app class implement the Spring dependency (15-30 mins)
+
+- Along the way in my tests I will implement new tests to chart my progress
+
+###Methods
+- Data layer:
+  - addForager
+- Service layer:
+  - addForager
+  - validateForager
+- Controller:
+  - addForager
+  - createMassReport
+  - createCostReport
+- View:
+  - addForagerDetails
+  - displayMassReport
+  - displayCostReport
+
+##Important Notes
+- Dates should be formatted using LocalDate
+- Money should be dealt with using BigDecimal
+- Files for Forages should be formatted yyyy-mm-dd.csv
+- Contents of files are comma-delimited, prevent entering commas
+- Forages contain a guid, forager's ID, the Item, and the mass
+
+###Questions
+- Am I understanding the requirements for the reports correctly?
+- How many errors should I expect to find?
+- What are the limits on what I should and shouldn't modify?
+- Are there any major key features I am missing or overlooking?
+
+
+
