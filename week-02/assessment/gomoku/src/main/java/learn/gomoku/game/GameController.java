@@ -26,11 +26,13 @@ public class GameController {
             Stone nextMove = player.generateMove(gomoku.getStones());
 
             //if it is a human player the HumanPlayer class returns null, so we would then need to generate a move
-            if (nextMove == null && !gomoku.isOver()){
+            if (nextMove == null){
                 nextMove = Hud.getNextMove(gomoku);
             }
             Result result = gomoku.place(nextMove);
-            System.out.println((result.getMessage() != null)?result.getMessage():"");
+            if (result.getMessage() != null) {
+                System.out.println(result.getMessage());
+            }
 //            playing = result.isSuccess(); //fails when an error msg is introduced like duplicate move
         }
         Hud.displayBoard(gomoku.getStones());

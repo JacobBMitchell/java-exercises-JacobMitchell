@@ -3,7 +3,9 @@ package learn.unexplained.domain;
 import learn.unexplained.data.DataAccessException;
 import learn.unexplained.data.EncounterRepository;
 import learn.unexplained.models.Encounter;
+import learn.unexplained.models.EncounterType;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -63,4 +65,48 @@ public class EncounterService {
 
         return result;
     }
+
+    public List<Encounter> findByType(EncounterType encType) throws DataAccessException {
+        if (encType != null) {
+            return repository.findByType(encType);
+        }
+        return new ArrayList<>(); //pass through method
+    }
+
+    public EncounterResult deleteById(int memoryId) throws DataAccessException{
+        EncounterResult result = new EncounterResult();
+        if (!repository.deleteById(memoryId)){
+            String message = String.format("Encounter id %s was not found: ", memoryId);
+            result.addErrorMessage(message);
+        }
+        return result; //qualifies that deleteById works
+    }
+
+    public EncounterResult update(Encounter enc) throws DataAccessException{
+        EncounterResult result = new EncounterResult();
+        result = validate(enc);
+        if (isDuplicate(enc)){
+            result.addErrorMessage("This encounter has already been created");
+        }
+        if (result.isSuccess()){
+            if (repository.update(enc)) {
+                result.setPayload(enc);
+            }else {
+                result.addErrorMessage("Encounter not found.");
+            }
+        }
+        return result;
+    }
+
+    private boolean isDuplicate(Encounter enc) throws DataAccessException {
+        List<Encounter> all = repository.findAll();
+        for (Encounter encounter: all){
+            if(enc.getType() == encounter.getType() && enc.getDescription().equals(encounter.getDescription()) &&
+                    enc.getWhen().equals(encounter.getWhen())){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

@@ -4,6 +4,7 @@ import learn.unexplained.data.DataAccessException;
 import learn.unexplained.domain.EncounterResult;
 import learn.unexplained.domain.EncounterService;
 import learn.unexplained.models.Encounter;
+import learn.unexplained.models.EncounterType;
 
 import java.util.List;
 
@@ -40,8 +41,31 @@ public class Controller {
                 case ADD:
                     addEncounter();
                     break;
+                case ENCOUNTER_BY_TYPE:
+                    displayEncountersByType();
+                    break;
+                case UPDATE:
+                    updateEncounters();
+                    break;
             }
         } while (option != MenuOption.EXIT);
+    }
+
+    private void updateEncounters() throws DataAccessException{
+        view.printHeader("Choose an encounter to update!");
+        displayAllEncounters();
+        int encID = view.chooseEncounter(service.findAll().size());
+
+    }
+
+    private void displayEncountersByType() throws DataAccessException {
+        EncounterType toFind = view.getEncounterTypeOption();//EncounterType.UFO;
+        List<Encounter> encounters = service.findByType(toFind);
+        if (encounters.size() == 0){
+            view.printHeader("There are no encounters of that type");
+            return;
+        }
+        view.printAllEncounters(encounters);
     }
 
     private void displayAllEncounters() throws DataAccessException {

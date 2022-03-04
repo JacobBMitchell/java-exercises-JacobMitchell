@@ -37,7 +37,7 @@ public class EncounterFileRepository implements EncounterRepository {
             throw new DataAccessException(ex.getMessage(), ex);
         }
 
-        return result;
+        return result;//
     }
 
     @Override
@@ -46,7 +46,7 @@ public class EncounterFileRepository implements EncounterRepository {
         encounter.setEncounterId(getNextId(all));
         all.add(encounter);
         writeAll(all);
-        return encounter;
+        return encounter;//
     }
 
     @Override
@@ -112,4 +112,28 @@ public class EncounterFileRepository implements EncounterRepository {
         return value.replace(DELIMITER_REPLACEMENT, DELIMITER);
     }
 
+    public List<Encounter> findByType(EncounterType encounterType) throws DataAccessException {
+        List<Encounter> all = findAll();
+        List<Encounter> allEncounterType = new ArrayList<>();
+        for (Encounter encounter: all){
+            if(encounter.getType() == encounterType){
+                allEncounterType.add(encounter);
+            }
+        }
+        return allEncounterType;
+    }
+
+    public boolean update(Encounter enc) throws DataAccessException {
+        List<Encounter> all = findAll();
+        int j =0;
+        for(Encounter encounter: all){
+            if (encounter.getEncounterId() == enc.getEncounterId()){
+                all.set(j,enc);
+                writeAll(all);
+                return true;
+            }
+            j++;
+        }
+        return false;
+    }
 }

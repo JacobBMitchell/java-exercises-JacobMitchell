@@ -123,4 +123,13 @@ public class View {
         String msg = String.format("Select Encounter Type [1-%s]:", index);
         return EncounterType.values()[readInt(msg, 1, index) - 1];
     }
+
+    public EncounterType getEncounterTypeOption() {
+        printHeader("Pick an Encounter Type");
+        return readType();
+    }
+
+    public int chooseEncounter(int max) {
+        return readInt("Pick an Encounter",1,max);
+    }
 }

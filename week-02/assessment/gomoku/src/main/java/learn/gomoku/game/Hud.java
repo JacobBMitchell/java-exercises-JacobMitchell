@@ -36,7 +36,7 @@ public class Hud {
      * @param stones
      */
     public static void displayBoard(List<Stone> stones) {
-        int[][] stoneArray = new int[15][15];
+        int[][] stoneArray = new int[Gomoku.WIDTH][Gomoku.WIDTH];
         for(Stone stone: stones){
             if (stone.isBlack()) {
                 stoneArray[stone.getRow()][stone.getColumn()] = 1;
@@ -91,9 +91,8 @@ public class Hud {
 
 
     public static Player selectPlayer() {
-        boolean notSet = true;
         Player playerN = null;
-        while(notSet) {
+        while(playerN == null) {
             System.out.print("Would you like to play(1) or have a random player play(2)?");
             int choice = scn.nextInt();
             scn.nextLine();
