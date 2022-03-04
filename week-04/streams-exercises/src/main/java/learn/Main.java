@@ -2,6 +2,7 @@ package learn;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -122,15 +123,31 @@ public class Main {
             System.out.println(country +": " + collect1.get(country));
         }
 
+        System.out.println();
         // 17. Count registrations per course.
+        Map<String, Long> collect2 = students.stream().flatMap(s -> s.getRegistrations().stream())
+                .collect(Collectors.groupingBy(Registration::getCourse, Collectors.counting()));
+        for (String course: collect2.keySet()){
+            System.out.println(course +": " + collect2.get(course));
+        }
 
-
+        System.out.println();
         // 18. How many registrations are not graded (GradeType == AUDIT)?
+        Map.Entry<GradeType, Long> max = students.stream().flatMap(s -> s.getRegistrations().stream())
+                .filter(registration -> registration.getGradType() == GradeType.AUDIT)
+                .collect(Collectors.groupingBy((Registration::getGradType), Collectors.counting()))
+                .entrySet().stream().max(Map.Entry.comparingByValue()).orElseThrow();
+        System.out.println(max);
 
+        System.out.println();
         // 19. Create a new type, StudentSummary with fields for Country, Major, and IQ.
         //     Map Students to StudentSummary, then sort and limit by IQ (your choice of low or high).
 
+
+
         // 20. What is the average GPA per country (remember, it's random fictional data).
+//        Map.Entry<String,Double> gpaPerCountry = students.stream()
+//                .collect(Collectors.groupingBy(Student::getCountry));
 
         // 21. What is the maximum GPA per country?
 
