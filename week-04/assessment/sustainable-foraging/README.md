@@ -30,15 +30,15 @@
      clean up App class, and create xml file.
 
 ##Plan
-- Run Code initially, follow errors using debugger.(10 mins)
+- Run Code initially, follow errors using debugger.(10 mins) 
 - Scan through code looking for any unimplemented features, implement those (1-2 hour)
-- Scan through tests to make sure all test cases are met, fill in tests (1-3 hours)
+- Scan through tests to make sure all test cases are met, fill in tests (1 hour)
 - In the data layer provide an add Forager method (15-30 mins)
-- Make sure nothing not accepted gets to the data layer in add Forager(30 mins)
+- Make sure nothing not accepted gets to the data layer in add Forager(45 mins)
 - Implement it in the controller and view (30 mins)
 - In Controller take existing data and display it in view to create
-each type of report (30 mins - 1 hour)
-- In the app class implement the Spring dependency (15-30 mins)
+each type of report (2 hour)
+- In the app class implement the Spring dependency (15 mins)
 
 - Along the way in my tests I will implement new tests to chart my progress
 

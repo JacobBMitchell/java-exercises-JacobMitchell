@@ -72,8 +72,8 @@ public class Controller {
                     break;
                 case REPORT_CATEGORY_VALUE:
                     categoryReport();
-                    view.displayStatus(false, "NOT IMPLEMENTED");
-                    view.enterToContinue();
+//                    view.displayStatus(false, "NOT IMPLEMENTED");
+//                    view.enterToContinue();
                     break;
                 case GENERATE:
                     generate();
