@@ -6,9 +6,12 @@ import learn.foraging.models.Forager;
 import learn.foraging.models.Item;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class View {
 
@@ -34,8 +37,8 @@ public class View {
         return MainMenuOption.fromValue(io.readInt(message, min, max));
     }
 
-    public LocalDate getForageDate() {
-        displayHeader(MainMenuOption.VIEW_FORAGES_BY_DATE.getMessage());
+    public LocalDate getForageDate(String msg) {
+        displayHeader(msg);
         return io.readLocalDate("Select a date [MM/dd/yyyy]: ");
     }
 
@@ -191,6 +194,44 @@ public class View {
 
         for (Item item : items) {
             io.printf("%s: %s, %s, %.2f $/kg%n", item.getId(), item.getName(), item.getCategory(), item.getDollarPerKilogram());
+        }
+    }
+
+    public Forager getForager() {
+        io.println("Enter a new forager");
+        Forager forager = new Forager();
+        String firstName = io.readString("What is the first name? ");
+        String lastName = io.readString("What is the last name? ");
+        boolean notTwo = true;
+        String state = "";
+        while (notTwo) {
+            state = io.readString("What is the state?(XX) ");
+            if(state.length() == 2){
+                notTwo = false;
+            }
+            else {
+                io.println("The state must be its two letter representation.");
+            }
+        }
+        forager.setFirstName(firstName);
+        forager.setLastName(lastName);
+        forager.setState(state);
+        return forager;
+    }
+
+    public void displayMassReport(Map<Item, Double> collect) {
+        // go from Item, double to:
+        //Item.getName, double to print out
+        //ie string,double mapping
+        for (Item item: collect.keySet()){
+            io.println(item.getName()+ ": " + collect.get(item) +" kgs");
+        }
+
+    }
+
+    public void displayCategoryReport(Map<Category, BigDecimal> collect) {
+        for (Category c: collect.keySet()){
+            io.println(c.toString()+": $"+collect.get(c).setScale(2, RoundingMode.HALF_UP));
         }
     }
 }

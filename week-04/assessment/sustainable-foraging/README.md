@@ -2,12 +2,12 @@
 
 ##High Level
 - Fix existing bugs
-- Create and check tests
+- ~~Create and check tests~~
 - Implement any unfinished features
-- Add 'add a Forager'
-- Create a report that displays the mass of each item on a day
-- Create a report that displays the total value of each Category on one day
-- Implement Spring Dependency (check)
+- ~~Add 'add a Forager'~~
+- ~~Create a report that displays the mass of each item on a day~~
+- ~~Create a report that displays the total value of each Category on one day~~
+- ~~Implement Spring Dependency~~
 
 ##Requirements
 - Detailed test methods
@@ -18,7 +18,7 @@
 - New Methods to implement add a Forager in:
   - data layer
   - service layer
-  -view layer 
+  - view layer 
 - New methods to create each type of report using streams()
   - mass of item on a day
     - Find all the items on a day already saved, sum the mass

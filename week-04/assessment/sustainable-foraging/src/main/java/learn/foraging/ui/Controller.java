@@ -10,8 +10,14 @@ import learn.foraging.models.Forage;
 import learn.foraging.models.Forager;
 import learn.foraging.models.Item;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.BinaryOperator;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Controller {
 
@@ -52,17 +58,20 @@ public class Controller {
                     addForage();
                     break;
                 case ADD_FORAGER:
-                    view.displayStatus(false, "NOT IMPLEMENTED");
-                    view.enterToContinue();
+                    addForager();
+//                    view.displayStatus(false, "NOT IMPLEMENTED");
+//                    view.enterToContinue();
                     break;
                 case ADD_ITEM:
                     addItem();
                     break;
                 case REPORT_KG_PER_ITEM:
-                    view.displayStatus(false, "NOT IMPLEMENTED");
-                    view.enterToContinue();
+                    massReport();
+//                    view.displayStatus(false, "NOT IMPLEMENTED");
+//                    view.enterToContinue();
                     break;
                 case REPORT_CATEGORY_VALUE:
+                    categoryReport();
                     view.displayStatus(false, "NOT IMPLEMENTED");
                     view.enterToContinue();
                     break;
@@ -73,9 +82,59 @@ public class Controller {
         } while (option != MainMenuOption.EXIT);
     }
 
+    private void categoryReport() {
+        //Get the day from user
+        LocalDate date = view.getForageDate(MainMenuOption.REPORT_CATEGORY_VALUE.getMessage());
+        //Get that days data from the database
+        List<Forage> forages = forageService.findByDate(date);
+        if (forages.isEmpty()){
+            view.displayStatus(true,"There are no forages on that date. ");
+            return;
+        }
+        //group all the Items by their category
+        //multiply the masses by their rates and sum those
+        Map<Category, BigDecimal> collect = forages.stream().collect(
+                Collectors.groupingBy(
+                        f -> f.getItem().getCategory(),
+                        Collectors.reducing(BigDecimal.ZERO,
+                                forage -> forage.getItem().getDollarPerKilogram().multiply(BigDecimal.valueOf(forage.getKilograms())),
+                                BigDecimal::add)));
+
+        view.displayCategoryReport(collect);
+
+    }
+
+    private void massReport() {
+        //Get the day from user
+        LocalDate date = view.getForageDate(MainMenuOption.REPORT_KG_PER_ITEM.getMessage());
+        //Get that days data from the database
+        List<Forage> forages = forageService.findByDate(date);
+        if (forages.isEmpty()){
+            view.displayStatus(true,"There are no forages on that date. ");
+            return;
+        }
+        //group by Item ID and sum the masses
+        //translate Item ID to item and display masses
+        Map<Item, Double> collect = forages.stream()
+                .collect(Collectors.groupingBy(Forage::getItem, Collectors.summingDouble(Forage::getKilograms)));
+        //display report
+        view.displayMassReport(collect);
+    }
+
+    private void addForager() throws DataException {
+        Forager forager = view.getForager();
+        Result<Forager> result = foragerService.addForager(forager);
+        if(result.isSuccess()){
+            view.displayStatus(result.isSuccess(), "New Forager Added");
+        }
+        else {
+            view.displayStatus(result.isSuccess(), result.getErrorMessages());
+        }
+    }
+
     // top level menu
     private void viewByDate() {
-        LocalDate date = view.getForageDate();
+        LocalDate date = view.getForageDate(MainMenuOption.VIEW_FORAGES_BY_DATE.getMessage());
         List<Forage> forages = forageService.findByDate(date);
         view.displayForages(forages);
         view.enterToContinue();

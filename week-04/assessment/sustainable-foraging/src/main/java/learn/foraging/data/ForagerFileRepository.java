@@ -51,17 +51,20 @@ public class ForagerFileRepository implements ForagerRepository {
     }
 
     @Override
-    public Forager addForager(Forager forager){
+    public Forager addForager(Forager forager) throws DataException {
         List<Forager> foragers = findAll();
+        forager.setId(java.util.UUID.randomUUID().toString());
         foragers.add(forager);
         try (PrintWriter writer = new PrintWriter(filePath)){
+            writer.println("id,first_name,last_name,state");
             for (Forager foragerI: foragers){
                 writer.println(serialize(foragerI));
             }
+            writer.close();
             return forager;
         } catch (IOException ex) {
-            return forager;
-            //throw new DataException("Could not add Forager",ex);
+//            return forager;
+            throw new DataException("Could not add Forager",ex);
 
         }
     }
@@ -69,7 +72,7 @@ public class ForagerFileRepository implements ForagerRepository {
     private String serialize(Forager forager){
         String result = "";
         result = forager.getId() +","+forager.getFirstName()+","
-                +","+forager.getLastName()+","+forager.getState();
+                +forager.getLastName()+","+forager.getState();
         return result;
     }
     

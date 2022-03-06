@@ -5,6 +5,7 @@ import learn.foraging.data.ForagerRepository;
 import learn.foraging.models.Forager;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ForagerService {
@@ -32,19 +33,31 @@ public class ForagerService {
             return result;
         }
         result = validate(forager);
-        if(result.isSuccess()){
-            //return repository.addForager(forager);
+
+        List<Forager> all = repository.findAll();
+        if (all.stream().anyMatch(f-> f.getState().equals(forager.getState())&&
+                f.getFirstName().equals(forager.getFirstName()) && f.getLastName().equals(forager.getLastName()))){
+            result.addErrorMessage("That person already exists");
         }
+            //return repository.addForager(forager);
+        if(result.isSuccess()) {
+            result.setPayload(forager);
+            repository.addForager(forager);
+        }
+
        return result;
     }
 
     private Result<Forager> validate(Forager forager) {
         Result<Forager> result = new Result<>();
-        if(forager.getFirstName().isEmpty() || forager.getFirstName() == null){
+        if(forager.getFirstName() == null ||forager.getFirstName().isBlank()){
             result.addErrorMessage("Needs First Name.");
         }
-        if(forager.getLastName().isEmpty() || forager.getLastName() == null){
+        if(forager.getLastName() == null || forager.getLastName().isBlank()){
             result.addErrorMessage("Needs Last Name");
+        }
+        if(forager.getState() == null || forager.getState().isBlank() ){
+            result.addErrorMessage("Need State");
         }
         return result;
     }

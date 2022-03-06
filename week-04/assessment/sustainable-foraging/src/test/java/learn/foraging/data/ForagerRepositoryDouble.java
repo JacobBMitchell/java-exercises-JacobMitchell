@@ -10,10 +10,10 @@ public class ForagerRepositoryDouble implements ForagerRepository {
 
     public final static Forager FORAGER = makeForager();
 
-    private final ArrayList<Forager> foragers = new ArrayList<>();
+    private ArrayList<Forager> foragers = new ArrayList<>();
 
     public ForagerRepositoryDouble() {
-        foragers.add(FORAGER);
+        //foragers.add(FORAGER);
     }
 
     @Override
@@ -38,6 +38,7 @@ public class ForagerRepositoryDouble implements ForagerRepository {
 
     @Override
     public Forager addForager(Forager forager) {
+        findAll().add(forager);
         return forager;
     }
 
