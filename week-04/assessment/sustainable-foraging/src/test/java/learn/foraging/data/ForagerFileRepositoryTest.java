@@ -19,8 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class ForagerFileRepositoryTest {
 
     private static final String SEED_FILE_PATH = "./data/foragers-reset.csv";
-    private static final String Test_FILE_PATH = "./data/foragers.csv";
-    ForagerFileRepository repo = new ForagerFileRepository("./data/foragers.csv");
+    private static final String Test_FILE_PATH = "./data/foragers-test.csv";
+    ForagerFileRepository repo = new ForagerFileRepository(Test_FILE_PATH);
 
 
     @AfterEach
