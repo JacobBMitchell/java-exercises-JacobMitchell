@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
-import java.net.URI;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,7 +23,7 @@ class ForagerFileRepositoryTest {
     ForagerFileRepository repo = new ForagerFileRepository(Test_FILE_PATH);
 
 
-    @AfterEach
+    @BeforeEach
     void setup() throws IOException {
         Path seedPath = Paths.get(SEED_FILE_PATH);
         Path testPath = Paths.get(Test_FILE_PATH);
