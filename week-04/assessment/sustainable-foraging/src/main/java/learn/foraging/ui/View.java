@@ -223,7 +223,7 @@ public class View {
         //Item.getName, double to print out
         //ie string,double mapping
         for (Item item: collect.keySet()){
-            io.println(item.getName()+ ": " + collect.get(item) +" kgs");
+            io.println(item.getName()+ ": " + String.format("%.3f",collect.get(item)) +" kgs");
         }
 
     }

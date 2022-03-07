@@ -36,7 +36,7 @@ public class ForagerService {
 
         List<Forager> all = repository.findAll();
         if (all.stream().anyMatch(f-> f.getState().equals(forager.getState())&&
-                f.getFirstName().equals(forager.getFirstName()) && f.getLastName().equals(forager.getLastName()))){
+                f.getFirstName().equalsIgnoreCase(forager.getFirstName()) && f.getLastName().equalsIgnoreCase(forager.getLastName()))){
             result.addErrorMessage("That person already exists");
         }
             //return repository.addForager(forager);

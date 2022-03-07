@@ -44,6 +44,11 @@ public class ItemService {
                 || item.getDollarPerKilogram().compareTo(new BigDecimal("7500.00")) > 0) {
             result.addErrorMessage("%/Kg must be between 0.00 and 7500.00.");
         }
+        if (item.getCategory() == Category.INEDIBLE || item.getCategory() == Category.POISONOUS){
+            if(item.getDollarPerKilogram().compareTo(BigDecimal.ZERO) != 0){
+                result.addErrorMessage("%/Kg should be $0 for poisonous or inedible forages");
+            }
+        }
 
         if (!result.isSuccess()) {
             return result;
