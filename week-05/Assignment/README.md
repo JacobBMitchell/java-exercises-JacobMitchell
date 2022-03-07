@@ -86,7 +86,5 @@ the reservations are organized
 
 ##Questions
 - What is the rate on weekdays vs weekends?
-- Are the hosts limitted to whats provided or when making a reservation
+- Are the hosts limited to what's provided or when making a reservation
 will I need to add a new host?
-- 
-
