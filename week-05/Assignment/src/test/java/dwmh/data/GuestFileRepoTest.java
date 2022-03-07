@@ -47,7 +47,13 @@ class GuestFileRepoTest {
     }
 
     @Test
-    void updateById() {
+    void updateById() throws DataException {
+        Guest guest1 = new Guest("Jacob","Mitchell","JMitchell@Dev-10.com","(931) 6240117","TN");
+        Guest guestOld = repo.findAll().get(2);
+        assertTrue(repo.updateById(guestOld.getId(),guest1));
+        List<Guest> all = repo.findAll();
+        assertFalse(all.contains(guestOld));
+        assertEquals(all.get(11).getFirstName(), guest1.getFirstName());
     }
 
     @Test
