@@ -89,7 +89,7 @@ public class GuestFileRepo implements GuestRepository{
         List<Guest> all = findAll();
         List<Guest> collect = all.stream().filter(a -> a.getId() != id).toList();
         writeToFile(collect);
-        return all.size()-1 == collect.size() ;
+        return all.size()-1 == collect.size();
     }
 
     private void writeToFile(List<Guest> collect) {

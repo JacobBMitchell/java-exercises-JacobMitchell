@@ -57,6 +57,12 @@ class GuestFileRepoTest {
     }
 
     @Test
-    void deleteById() {
+    void deleteById() throws DataException {
+        List<Guest> all = repo.findAll();
+        assertEquals(3,all.get(2).getId());
+        assertTrue(repo.deleteById(3));
+        all = repo.findAll();
+        assertNotEquals(3,all.get(2).getId());
+
     }
 }

@@ -1,12 +1,12 @@
-#Don't Wreck My House
+# Don't Wreck My House
 
-##High Level
+## High Level
 - View existing reservations for a host.
 - Create a reservation for a guest with a host.
 - Edit existing reservation
 - Cancel **FUTURE** reservations
 
-##Requirements
+## Requirements
 - Data layer that has access to files
   - Reservations
   - Hosts/Locations
@@ -42,7 +42,7 @@ on and store data
 using spring 
   - in resources -> xml file that holds information
 
-##Plan
+## Plan
 - Start with basic models to use throughout the program (20 mins)
 - Create Guest data repository (40 mins)
 - Test Guest data repo (along the way) (30 mins)
@@ -72,7 +72,80 @@ using spring
 
 - Late stage bug fixing and formatting (2 hours)
 
-##Important Notes
+## Classes
+### Data
+- GuestFileRepo
+- HostFileRepo
+- ReservationFileRepo
+  - All of above contain Crud Methods
+    - Create
+    - Read
+    - Update
+    - Destroy
+  - As well as means to convert from text to a list of
+  objects and back
+
+### Domain
+- GuestService
+- HostService
+  - Both of which have methods to prevent bad inputs
+  and the ability to retrieve data from the Data layer
+- ReservationService
+  - This class will also call on the other two's services
+  to retrieve all information required to make a service
+-Results
+  - This class holds a list of errors and or the object
+  required to return to the control layer that were filtered
+  in the service layer based on inputs
+
+### View
+- View
+  - Contains all the basic ins and outs of viewing the program
+  such as
+    - Println
+    - Header
+    - getDate
+    - getHost
+    - getGuest
+    - getLocation
+    - makeReservation
+    - Displaylists
+
+### Controller
+- Controller
+  - This class reads inputs from view, passes them to service
+  and makes data presentable back to the view
+  - This class also is where the main loop of the program resides
+    - Run
+      - the main loop
+    - displayReservations
+    - createReservations
+    - editReservations
+    - cancelFutureReservation
+
+### Models
+- Guest
+  - FirstName, LastName, Email, Phone, State
+- Host
+  - lastName, email, phone, Location
+- Location
+  - Address, city, state, postal code, standard rate, weekend rate
+- Reservation
+  - start date, end date, guest id, total 
+  
+## Tests
+### Data Layer
+- Each method for creating updating reading and deleteing will need testing 
+in each file repository class to make sure the inputs and outputs are correct
+
+### Service Layer
+- Each method here must show that should a wrong input occur it returns a Result type
+object with the correct errors **or** the required object requested of it
+- Tests should both confirm when it works correctly and passes data, and provide errors
+when inputs are bad regardless of how they are handled in view/controller
+
+
+## Important Notes
 - new reservations should only be able to be made after today
 - cancellations must also be in the future
 - Money should be dealt with in Big Decimal
@@ -84,7 +157,7 @@ using spring
 - reservations have {host-id}.csv so dependent on the host 
 the reservations are organized
 
-##Questions
+## Questions
 - What is the rate on weekdays vs weekends?
 - Are the hosts limited to what's provided or when making a reservation
 will I need to add a new host?
