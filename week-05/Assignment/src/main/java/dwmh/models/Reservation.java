@@ -12,7 +12,6 @@ public class Reservation {
     LocalDate end;
     int guestId;
     BigDecimal total;
-    Host host;
 
     public Reservation() {
     }
@@ -73,24 +72,17 @@ public class Reservation {
         this.total = total;
     }
 
-    public Host getHost() {
-        return host;
-    }
-
-    public void setHost(Host host) {
-        this.host = host;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reservation that = (Reservation) o;
-        return id == that.id && guestId == that.guestId && Objects.equals(hostId, that.hostId) && Objects.equals(start, that.start) && Objects.equals(end, that.end) && Objects.equals(total, that.total) && Objects.equals(host, that.host);
+        return id == that.id && guestId == that.guestId && Objects.equals(hostId, that.hostId) && Objects.equals(start, that.start) && Objects.equals(end, that.end) && Objects.equals(total, that.total);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(hostId, id, start, end, guestId, total, host);
+        return Objects.hash(hostId, id, start, end, guestId, total);
     }
 }

@@ -20,7 +20,7 @@ class ReservationFileRepoTest {
     String Test_Path = "./test_data/hosts/test.csv";
     String Seed_Path = "./test_data/hosts/seed.csv";
     HostFileRepo hosts = new HostFileRepo(Test_Path);
-    ReservationFileRepo repo = new ReservationFileRepo("./test_data/reservations",hosts);
+    ReservationFileRepo repo = new ReservationFileRepo("./test_data/reservations");
 
     @BeforeEach
     void setUp() throws IOException {
@@ -43,20 +43,26 @@ class ReservationFileRepoTest {
     @Test
     void findByHost() throws DataException {
         Host host1 = hosts.findAll().get(0);//3edda6bc
-        List<Reservation> resos = repo.findByHost(host1);
-        assertEquals(host1.getLastName(),resos.get(3).getHost().getLastName());
+        List<Reservation> resos = repo.findByHost(host1.getId());
+        //check something else
+        assertEquals(new BigDecimal("2125"),resos.get(6).getTotal());
+        //assertEquals(host1.getLastName(),resos.get(3).getHost().getLastName());
+
+        Host host2 = hosts.findAll().get(5);
+        List<Reservation> resos2 = repo.findByHost(host2.getId());
+        assertEquals(0,resos2.size());
+
     }
 
     @Test
     void add() throws DataException {
         Host host = hosts.findAll().get(7); // 2e72f86c
-        List<Reservation> resos = repo.findByHost(host);
+        List<Reservation> resos = repo.findByHost(host.getId());
         LocalDate start = LocalDate.of(2022,5,12);
         Reservation reso1 = new Reservation(host.getId(), start
                 , LocalDate.of(2022, 5, 15),4,new BigDecimal("300"));
-        reso1.setHost(host);
         Reservation r = repo.add(reso1);
-        assertEquals(r.getEnd(), repo.findByHost(host).get(12).getEnd());
+        assertEquals(r.getEnd(), repo.findByHost(host.getId()).get(13).getEnd());
 
     }
 
@@ -64,10 +70,14 @@ class ReservationFileRepoTest {
     void deleteById() throws DataException {
         Host host1 = hosts.findAll().get(0);
         assertTrue(repo.deleteById(4,host1));
-        assertEquals(5,repo.findByHost(host1).get(3).getId());
+        assertEquals(5,repo.findByHost(host1.getId()).get(3).getId());
     }
 
     @Test
-    void updateById() {
+    void updateById() throws DataException { //7,2021-05-02,2021-05-08,699,2125
+        Host host = hosts.findAll().get(0);
+        Reservation r = new Reservation(host.getId(),LocalDate.of(2020,2,2), LocalDate.of(2020,3,3),12,new BigDecimal(30));
+        assertTrue(repo.updateById(7,host,r));
+        assertEquals(repo.findByHost(host.getId()).get(repo.findByHost(host.getId()).size()-1).getTotal(),new BigDecimal(30));
     }
 }

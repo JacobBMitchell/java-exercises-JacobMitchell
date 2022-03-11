@@ -7,7 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class App {
     public static void main(String[] args) {
         ApplicationContext container = new ClassPathXmlApplicationContext("dependency-config.xml");
-        //Controller controller = container.getBean(Controller.class);
-        //controller.run();
+        Controller controller = container.getBean(Controller.class);
+        controller.run();
     }
 }

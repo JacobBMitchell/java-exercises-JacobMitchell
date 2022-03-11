@@ -10,31 +10,28 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Stream;
+
 
 public class ReservationFileRepo implements ReservationRepository{
     private final String directory;
-    private final HostRepository repo;
 
-    public ReservationFileRepo(String directory, HostRepository hr) {
+    public ReservationFileRepo(String directory) {
         this.directory = directory;
-        this.repo = hr;
     }
 
     @Override
-    public List<Reservation> findByHost(Host host) throws DataException {
+    public List<Reservation> findByHost(String hostId) throws DataException {
         List<Reservation> all = new ArrayList<>();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(getFilePath(host.getId())))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(getFilePath(hostId)))) {
 
             reader.readLine(); // read header
 
-            for (String line = reader.readLine(); line != null; line = reader.readLine()) {
+            for (String line = reader.readLine(); line != null && !line.isEmpty(); line = reader.readLine()) {
 
                 String[] fields = line.split(",");
 
-                all.add(decode(fields, host.getId()));
+                all.add(decode(fields, hostId));
 
             }
         } catch (IOException ex) {
@@ -55,7 +52,6 @@ public class ReservationFileRepo implements ReservationRepository{
         res.setEnd(LocalDate.parse(fields[2]));
         res.setGuestId(Integer.parseInt(fields[3]));
         res.setTotal(new BigDecimal(fields[4]));
-        res.setHost(repo.findAll().stream().filter(a -> Objects.equals(a.getId(), id)).toList().get(0));
         return res;
     }
 
@@ -65,7 +61,7 @@ public class ReservationFileRepo implements ReservationRepository{
 
     @Override
     public Reservation add(Reservation res) throws DataException {
-        List<Reservation> all = findByHost(res.getHost());
+        List<Reservation> all = findByHost(res.getHostId());
         int nextId;
         if (all.stream().max(Comparator.comparingInt(Reservation::getId)).isPresent()){
             nextId = all.stream().max(Comparator.comparingInt(Reservation::getId)).get().getId() +1;
@@ -104,16 +100,21 @@ public class ReservationFileRepo implements ReservationRepository{
 
         @Override
     public boolean deleteById(int id, Host host) throws DataException {
-        List<Reservation> reservations = findByHost(host);
+        List<Reservation> reservations = findByHost(host.getId());
         Reservation reservation = reservations.stream().filter(a -> a.getId() == id).toList().get(0);
         reservations.remove(reservation);
         writeAll(reservations,host.getId());
-        return findByHost(host).size() == reservations.size();
+        return findByHost(host.getId()).size() == reservations.size();
     }
 
     @Override
-    public boolean updateById(int id, Host host) throws DataException {
-        return false;
+    public boolean updateById(int id, Host host, Reservation reservation) throws DataException {
+        boolean deleted = deleteById(id,host);
+        if (deleted){
+            add(reservation);
+        }
+        //List<Reservation> reservations = findByHost(host);
+        return deleted;
     }
 }
 

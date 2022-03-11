@@ -1,6 +1,7 @@
 package dwmh.models;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class Location {
     String address;
@@ -68,5 +69,18 @@ public class Location {
 
     public void setWeekendRate(BigDecimal weekendRate) {
         this.weekendRate = weekendRate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Location location = (Location) o;
+        return zipCode == location.zipCode && Objects.equals(address, location.address) && Objects.equals(city, location.city) && Objects.equals(state, location.state) && Objects.equals(rate, location.rate) && Objects.equals(weekendRate, location.weekendRate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(address, city, state, zipCode, rate, weekendRate);
     }
 }
