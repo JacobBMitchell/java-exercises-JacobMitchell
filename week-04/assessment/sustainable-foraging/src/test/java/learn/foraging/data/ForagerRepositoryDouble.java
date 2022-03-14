@@ -10,10 +10,10 @@ public class ForagerRepositoryDouble implements ForagerRepository {
 
     public final static Forager FORAGER = makeForager();
 
-    private final ArrayList<Forager> foragers = new ArrayList<>();
+    private ArrayList<Forager> foragers = new ArrayList<>();
 
     public ForagerRepositoryDouble() {
-        foragers.add(FORAGER);
+        //foragers.add(FORAGER);
     }
 
     @Override
@@ -34,6 +34,12 @@ public class ForagerRepositoryDouble implements ForagerRepository {
         return foragers.stream()
                 .filter(i -> i.getState().equalsIgnoreCase(stateAbbr))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Forager addForager(Forager forager) {
+        findAll().add(forager);
+        return forager;
     }
 
     private static Forager makeForager() {

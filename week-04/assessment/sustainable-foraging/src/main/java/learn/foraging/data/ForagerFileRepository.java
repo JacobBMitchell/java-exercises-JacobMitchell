@@ -2,10 +2,7 @@ package learn.foraging.data;
 
 import learn.foraging.models.Forager;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOError;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -51,6 +48,32 @@ public class ForagerFileRepository implements ForagerRepository {
         return findAll().stream()
                 .filter(i -> i.getState().equalsIgnoreCase(stateAbbr))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Forager addForager(Forager forager) throws DataException {
+        List<Forager> foragers = findAll();
+        forager.setId(java.util.UUID.randomUUID().toString());
+        foragers.add(forager);
+        try (PrintWriter writer = new PrintWriter(filePath)){
+            writer.println("id,first_name,last_name,state");
+            for (Forager foragerI: foragers){
+                writer.println(serialize(foragerI));
+            }
+            writer.close();
+            return forager;
+        } catch (IOException ex) {
+//            return forager;
+            throw new DataException("Could not add Forager",ex);
+
+        }
+    }
+
+    private String serialize(Forager forager){
+        String result = "";
+        result = forager.getId() +","+forager.getFirstName()+","
+                +forager.getLastName()+","+forager.getState();
+        return result;
     }
     
     private Forager deserialize(String[] fields) {
