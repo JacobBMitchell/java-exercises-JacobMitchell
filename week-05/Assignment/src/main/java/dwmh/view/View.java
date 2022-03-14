@@ -200,6 +200,7 @@ public class View {
     public int chooseReservation(List<Reservation> all, Host host, List<Guest> guests, String action) {
         int i =1;
 
+
         all = all.stream().filter(a -> a.getStart().isAfter(LocalDate.now()) || a.getStart().isEqual(LocalDate.now()))
                 .toList();
 
