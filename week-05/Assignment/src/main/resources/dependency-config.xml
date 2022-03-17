@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Define beans here. -->
+    <bean class="dwmh.data.HostFileRepo" id="HostRepo">
+        <constructor-arg value="./dont-wreck-my-house-data/hosts.csv"/>
+    </bean>
+
+    <bean class="dwmh.data.GuestFileRepo" id="GuestRepo">
+        <constructor-arg value="./dont-wreck-my-house-data/guests.csv"/>
+    </bean>
+
+    <bean class="dwmh.data.ReservationFileRepo" id="ReservationRepo">
+        <constructor-arg value="./dont-wreck-my-house-data/reservations"/>
+    </bean>
+
+    <bean class="dwmh.domain.HostService" id="HostService">
+        <constructor-arg ref="HostRepo"/>
+    </bean>
+
+    <bean class="dwmh.domain.GuestService" id="GuestService">
+        <constructor-arg ref="GuestRepo"/>
+    </bean>
+
+    <bean class="dwmh.domain.ReservationService" id="ReservationService">
+        <constructor-arg ref="GuestRepo"/>
+        <constructor-arg ref="HostRepo"/>
+        <constructor-arg ref="ReservationRepo"/>
+
+    </bean>
+
+    <bean class="dwmh.view.View" id="view"/>
+
+    <bean class="dwmh.controller.Controller" >
+        <constructor-arg ref="HostService"/>
+        <constructor-arg ref="GuestService"/>
+        <constructor-arg ref="ReservationService"/>
+        <constructor-arg ref="view"/>
+    </bean>
+
+</beans>
