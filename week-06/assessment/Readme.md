@@ -19,11 +19,11 @@ _These steps can be done in class on Friday_
     * Define any foreign keys
   * [x] Identify any default or unique constraints
 * [x] Draw a diagram of the database schema 0.25 hours)
-  * [ ] Share with one or more classmates for feedback
-  * [ ] Update database schema as needed
-  * [ ] Share updated diagram with one or more classmates
-  * [ ] Update database schema as needed
-  * [ ] Share with assigned code reviewer for feedback
+  * [x] Share with one or more classmates for feedback
+  * [x] Update database schema as needed
+  * [x] Share updated diagram with one or more classmates
+  * [x] Update database schema as needed
+  * [x] Share with assigned code reviewer for feedback
 _Acceptable diagram formats_
 * Diagrams.net (https://app.diagrams.net/) (saved as a PDF)
 * Google Drawing (saved as a PDF)
@@ -32,9 +32,9 @@ _Acceptable diagram formats_
 **Make sure that my GitHub repo is updated!**
 ---
 _These steps can be done in class on Friday or over the weekend_
-* [ ] Write the DDL in a file named `rcttc-schema.sql` to create the database (1.0 hours)
-  * [ ] Drop and create the database
-  * [ ] Create all of the tables
+* [x] Write the DDL in a file named `rcttc-schema.sql` to create the database (1.0 hours)
+  * [x] Drop and create the database
+  * [x] Create all of the tables
 * [ ] Import the provided data (0.20 hours)
   * [ ] Import the csv file using Workbench _or_
   * [ ] Run the provided SQL script
