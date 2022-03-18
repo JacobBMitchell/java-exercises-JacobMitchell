@@ -133,4 +133,4 @@ where customer_id = 25 and theater_id = 1;
 delete from viewing
 where customer_id = 26 and theater_id = 1;
 
- -- drop table `rcttc-data`;
+drop table `rcttc-data`;
