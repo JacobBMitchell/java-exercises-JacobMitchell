@@ -1,24 +1,24 @@
 # Tiny Theaters Assessment
 ## Tasks
 _TODO_ Add time estimates to each of the top-level tasks
-* [ ] Create a new GitHub repo for this assessment (0.05 hours) (hours.minutes)
-  * [ ] Update the README with the contents from this file
-  * [ ] Add the instruction team as collaborators
-* [ ] Review the requirements (0.20 hours)
-* [ ] Download the provided data (0.02 hours)
-* [ ] Review the provided data (0.10 hours)
-* [ ] Identify any research that I need to do (0.15 hours)
+* [x] Create a new GitHub repo for this assessment (0.05 hours) (hours.minutes)
+  * [x] Update the README with the contents from this file
+  * [x] Add the instruction team as collaborators
+* [x] Review the requirements (0.20 hours)
+* [x] Download the provided data (0.02 hours)
+* [x] Review the provided data (0.10 hours)
+* [x] Identify any research that I need to do (0.15 hours)
 ---
 _These steps can be done in class on Friday_
-* [ ] Design initial database schema (0.45 hours)
-  * [ ] Identify the tables that are needed
-  * [ ] For each table...
+* [x] Design initial database schema (0.45 hours)
+  * [x] Identify the tables that are needed
+  * [x] For each table...
     * Define a primary key
     * Define its columns (name, data type, and nullability)
-  * [ ] Identify the relationships between tables
+  * [x] Identify the relationships between tables
     * Define any foreign keys
-  * [ ] Identify any default or unique constraints
-* [ ] Draw a diagram of the database schema 0.25 hours)
+  * [x] Identify any default or unique constraints
+* [x] Draw a diagram of the database schema 0.25 hours)
   * [ ] Share with one or more classmates for feedback
   * [ ] Update database schema as needed
   * [ ] Share updated diagram with one or more classmates
