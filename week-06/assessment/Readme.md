@@ -1,16 +1,16 @@
 # Tiny Theaters Assessment
 ## Tasks
 _TODO_ Add time estimates to each of the top-level tasks
-* [ ] Create a new GitHub repo for this assessment (#.# hours)
+* [ ] Create a new GitHub repo for this assessment (0.05 hours) (hours.minutes)
   * [ ] Update the README with the contents from this file
   * [ ] Add the instruction team as collaborators
-* [ ] Review the requirements (#.# hours)
-* [ ] Download the provided data (#.# hours)
-* [ ] Review the provided data (#.# hours)
-* [ ] Identify any research that I need to do (#.# hours)
+* [ ] Review the requirements (0.20 hours)
+* [ ] Download the provided data (0.02 hours)
+* [ ] Review the provided data (0.10 hours)
+* [ ] Identify any research that I need to do (0.15 hours)
 ---
 _These steps can be done in class on Friday_
-* [ ] Design initial database schema (#.# hours)
+* [ ] Design initial database schema (0.45 hours)
   * [ ] Identify the tables that are needed
   * [ ] For each table...
     * Define a primary key
@@ -18,7 +18,7 @@ _These steps can be done in class on Friday_
   * [ ] Identify the relationships between tables
     * Define any foreign keys
   * [ ] Identify any default or unique constraints
-* [ ] Draw a diagram of the database schema (#.# hours)
+* [ ] Draw a diagram of the database schema 0.25 hours)
   * [ ] Share with one or more classmates for feedback
   * [ ] Update database schema as needed
   * [ ] Share updated diagram with one or more classmates
@@ -32,19 +32,19 @@ _Acceptable diagram formats_
 **Make sure that my GitHub repo is updated!**
 ---
 _These steps can be done in class on Friday or over the weekend_
-* [ ] Write the DDL in a file named `rcttc-schema.sql` to create the database (#.# hours)
+* [ ] Write the DDL in a file named `rcttc-schema.sql` to create the database (1.0 hours)
   * [ ] Drop and create the database
   * [ ] Create all of the tables
-* [ ] Import the provided data (#.# hours)
+* [ ] Import the provided data (0.20 hours)
   * [ ] Import the csv file using Workbench _or_
   * [ ] Run the provided SQL script
-* [ ] Write the DML in a file named `rcttc-data.sql` to populate the database tables (#.# hours)
+* [ ] Write the DML in a file named `rcttc-data.sql` to populate the database tables (1.30 hours)
   * [ ] Write insert-from-select statements to move the data from the denormalized table to the normalized tables
 **Make sure that my GitHub repo is updated!**
 ---
 _These steps will be completed over the weekend_
-* [ ] Write the DML to make the necessary data updates (as outlined below) (#.# hours)
-* [ ] Write the required queries (as outlined below) in a file named `rcttc-queries.sql` (#.# hours)
+* [ ] Write the DML to make the necessary data updates (as outlined below) (0.40 hours)
+* [ ] Write the required queries (as outlined below) in a file named `rcttc-queries.sql` (1.30 hours)
 **Make frequent commits to my GitHub repo!**
 ---
 ## High Level Requirements
