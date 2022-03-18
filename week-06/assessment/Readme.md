@@ -35,15 +35,15 @@ _These steps can be done in class on Friday or over the weekend_
 * [x] Write the DDL in a file named `rcttc-schema.sql` to create the database (1.0 hours)
   * [x] Drop and create the database
   * [x] Create all of the tables
-* [ ] Import the provided data (0.20 hours)
-  * [ ] Import the csv file using Workbench _or_
-  * [ ] Run the provided SQL script
-* [ ] Write the DML in a file named `rcttc-data.sql` to populate the database tables (1.30 hours)
-  * [ ] Write insert-from-select statements to move the data from the denormalized table to the normalized tables
+* [x] Import the provided data (0.20 hours)
+  * [x] Import the csv file using Workbench _or_
+  * [x] Run the provided SQL script
+* [x] Write the DML in a file named `rcttc-data.sql` to populate the database tables (1.30 hours)
+  * [x] Write insert-from-select statements to move the data from the denormalized table to the normalized tables
 **Make sure that my GitHub repo is updated!**
 ---
 _These steps will be completed over the weekend_
-* [ ] Write the DML to make the necessary data updates (as outlined below) (0.40 hours)
+* [x] Write the DML to make the necessary data updates (as outlined below) (0.40 hours)
 * [ ] Write the required queries (as outlined below) in a file named `rcttc-queries.sql` (1.30 hours)
 **Make frequent commits to my GitHub repo!**
 ---
