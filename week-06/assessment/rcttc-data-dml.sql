@@ -2,8 +2,10 @@ use `rcttc-schema`;
 
 select * from `rcttc-data`;
 
+set sql_safe_updates = 0;
 delete from `rcttc-data`
 where customer_last = 'Egle of Germany' and customer_first = 'Liv';
+set sql_safe_updates = 1;
 
 select distinct customer_first, customer_last, customer_email, customer_phone, customer_address
 from `rcttc-data`;
