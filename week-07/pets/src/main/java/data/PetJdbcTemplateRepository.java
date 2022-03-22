@@ -4,14 +4,19 @@ import model.Pet;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.List;
+
 @Repository
 public class PetJdbcTemplateRepository implements PetRepository{
 
     private final JdbcTemplate jdbcTemplate;
-    
+
 
     // 1. Create a single mapper for all find methods.
     private final RowMapper<Pet> mapper = (resultSet, rowNum) -> {
@@ -49,16 +54,40 @@ public class PetJdbcTemplateRepository implements PetRepository{
 
     @Override
     public Pet add(Pet pet) {
-        return null;
+        final String sql = "insert into pet (`name`, `type`) values (?,?);";
+
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        int rowsAffected = jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, pet.getName());
+            ps.setString(2, pet.getType());
+            return ps;
+        }, keyHolder);
+
+        if (rowsAffected <= 0) {
+            return null;
+        }
+
+        pet.setPetId(keyHolder.getKey().intValue());
+        return pet;
     }
 
     @Override
     public boolean update(Pet pet) {
-        return false;
+        final String sql = "update pet set "
+                + "`name` = ?, "
+                + "`type` = ? "
+                + "where pet_id = ?;";
+
+        int rowsUpdated = jdbcTemplate.update(sql,
+                pet.getName(), pet.getType(), pet.getPetId());
+
+        return rowsUpdated > 0;
     }
 
     @Override
     public boolean deleteById(int petId) {
-        return false;
+        final String sql = "delete from pet where pet_id = ?;";
+        return jdbcTemplate.update(sql, petId) > 0;
     }
 }
