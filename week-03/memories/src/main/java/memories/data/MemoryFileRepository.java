@@ -9,13 +9,13 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
+//@Repository
 public class MemoryFileRepository implements MemoryRepository {
 
     private final String filePath;
     private final String delimiter = "~";
 
-    public MemoryFileRepository(@Value("./src/main/java/memories/data/memories.txt") String filePath) {
+    public MemoryFileRepository(String filePath) {//@Value("./src/main/java/memories/data/memories.txt") String filePath) {
         this.filePath = filePath;
     }
 

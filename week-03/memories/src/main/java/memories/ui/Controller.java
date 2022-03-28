@@ -3,6 +3,7 @@ package memories.ui;
 import memories.data.DataAccessException;
 import memories.domain.MemoryResult;
 import memories.domain.MemoryService;
+import memories.domain.MemoryServiceTemplate;
 import memories.models.Memory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,10 +14,10 @@ import java.util.List;
 public class Controller {
 
     private final View view;
-    private final MemoryService service;
+    private final MemoryServiceTemplate service;
 
     @Autowired
-    public Controller(View view, MemoryService service) {
+    public Controller(View view, MemoryServiceTemplate service) {
         this.view = view;
         this.service = service;
     }

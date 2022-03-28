@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>learn</groupId>
-    <artifactId>pets</artifactId>
+    <artifactId>field-agent</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -28,7 +28,7 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- database -->
+        <!-- Database -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
@@ -38,15 +38,14 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
-        <!-- devtools -->
+        <!-- Development tools -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
         </dependency>
 
-        <!-- NEW CONFIGURATION <<<< -->
-        <!-- testing -->
+        <!-- Testing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

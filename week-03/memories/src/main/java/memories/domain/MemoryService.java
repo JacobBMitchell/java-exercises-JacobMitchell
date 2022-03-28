@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class MemoryService {
+//@Service
+public class MemoryService implements MemoryServiceTemplate {
 
     private final MemoryRepository repository;
 
@@ -16,14 +16,17 @@ public class MemoryService {
         this.repository = repository;
     }
 
+    @Override
     public List<Memory> findPublicMemories() throws DataAccessException{
         return repository.findShareable(true);
     }
 
+    @Override
     public List<Memory> findPrivateMemories() throws DataAccessException{
         return repository.findShareable(false);
     }
 
+    @Override
     public MemoryResult add(Memory memory)throws DataAccessException{
         MemoryResult result = validate(memory);
 
@@ -37,6 +40,7 @@ public class MemoryService {
         return result;
     }
 
+    @Override
     public MemoryResult update(Memory memory)throws DataAccessException{
         MemoryResult result = validate(memory);
 
@@ -55,6 +59,7 @@ public class MemoryService {
         return result;
     }
 
+    @Override
     public MemoryResult deleteById(int memoryId) throws DataAccessException{
         MemoryResult result = new MemoryResult();
         if (!repository.deleteById(memoryId)){
