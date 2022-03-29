@@ -1,0 +1,19 @@
+h1 {
+    color: rgb(223, 134, 226);
+}
+
+button {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 100px;
+    padding: 50px;
+    
+    
+}
+
+.centered {
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%,50%);
+
+}

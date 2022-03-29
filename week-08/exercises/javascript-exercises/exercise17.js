@@ -13,12 +13,10 @@ const assert = require("assert");
 // If you see the message "success!", all tests pass.
 
 function mergeAndRemoveDuplicates(arr1,b){
-    for (i= 0; i < b.length; i++){ // [1, 2, 3] [ 3, 4, 5] => [1,2,3,3,4,5]
-        arr1.push(b[i]);
-    }
-    arr1 = arr1.filter((v,i,a) => a.indexOf(v) === i); // => [1,2,3,4,5] 
-    return arr1;
-    
+    arr1 = [...arr1, ...b];
+    return [...new Set(arr1)];
+    //return arr1; //hold alt plus arrow keys move entire row up and down
+    //arr1 = arr1.filter((v,i,a) => a.indexOf(v) === i); // => [1,2,3,4,5] 
 }
 
 assert.deepStrictEqual(mergeAndRemoveDuplicates([1, 2], [2, 3]), [1, 2, 3]);
