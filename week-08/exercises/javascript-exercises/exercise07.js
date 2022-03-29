@@ -6,7 +6,24 @@ const assert = require("assert");
 // If the string doesn't contain vowels, `value` is null, 
 // or `value` is undefined, return an empty string.
 
-function getFirstVowel(value) {
+function getFirstVowel(word) {  
+  if (word == null){
+      return "";
+  }
+  for (let i = 0; i < word.length; i++){
+      let letter = word.charAt(i);
+      switch(letter.toLowerCase()){
+            case "a":
+            case "e":
+            case "i":
+            case "o":
+            case "u":
+                return word.charAt(i);
+
+      }
+
+  }
+  return "";
 
 }
 

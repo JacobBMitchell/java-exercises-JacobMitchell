@@ -21,7 +21,7 @@
 14 -> "Sunday"
 15 -> "Monday"
 16 -> "Tuesday"
-etc...
+etc... a
 */
 
 const day = 12;

@@ -5,7 +5,11 @@ const phrase = "phrase";
 // 1. Write a loop that "doubles" each character in a word.
 // You'll need a new string variable to store the result.
 // 2. Print the result.
-
+let newPhrase =""; 
+for (let i = 0; i < phrase.length; i++){
+    newPhrase += phrase.charAt(i) + phrase.charAt(i);
+}
+console.log(newPhrase);
 // Examples
 // ===============
 // "dog" -> "ddoogg"

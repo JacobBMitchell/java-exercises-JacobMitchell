@@ -13,3 +13,9 @@
 */
 
 // Confirm your result by debugging or printing to the console.
+
+function mixed(arr1, item, arr2){
+    return [...arr1, item, ...arr2]; 
+}
+
+console.log(mixed([1,2], "a", [true]));

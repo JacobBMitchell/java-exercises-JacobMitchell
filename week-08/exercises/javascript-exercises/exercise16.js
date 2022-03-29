@@ -9,6 +9,13 @@ const assert = require("assert");
 
 // Execute this exercise.
 // If you see the message "success!", all tests pass.
+function removeEveryOther(someArray){
+    let thisArray = [];
+    for (i = 0; i< someArray.length; i+=2){
+        thisArray.push(someArray[i])
+    }
+    return thisArray;
+}
 
 assert.deepStrictEqual(removeEveryOther([1, 2, 3, 4, 5]), [1, 3, 5]);
 assert.deepStrictEqual(removeEveryOther(["a", "b", "c"]), ["a", "c"]);

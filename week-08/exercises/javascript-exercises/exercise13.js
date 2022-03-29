@@ -7,6 +7,10 @@ const assert = require("assert");
 // Description: accepts a rest parameter in the third parameter position
 // and returns it.
 
+function getTheRest(a,b, ...rest){
+    return rest;
+}
+
 
 // Execute this exercise.
 // If you see the message "success!", all tests pass.

@@ -31,8 +31,8 @@ if (swimmers%2 != 0){
     while (swimmers > 0){
         let mini = Math.min(archers,potters);
         if (potters == mini){
-            potters++;
-            swimmers--;
+            potters ++;
+            swimmers --;
         }
         else{
             archers++;

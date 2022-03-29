@@ -10,6 +10,16 @@ const assert = require("assert");
 // Execute this exercise.
 // If you see the message "success!", all tests pass.
 
+function areInOrder(){
+    let args = Array.prototype.slice.call(arguments);
+    for (i = 1; i< args.length; i++){
+        if (args[i-1]> args[i]){
+            return false;
+        }
+    }
+    return true;
+}
+
 assert.strictEqual(areInOrder(2, 4, 6, 7), true);
 assert.strictEqual(areInOrder(4, 1, 1, 8), false);
 assert.strictEqual(areInOrder(1, 1, 2, 2), true);

@@ -8,5 +8,9 @@ const assert = require("assert");
 // Execute this exercise.
 // If you see the message "success!", all tests pass.
 
+function makeFunction(){
+    return () => {};
+}
+
 assert.strictEqual(typeof makeFunction(), "function");
 console.log("success!");

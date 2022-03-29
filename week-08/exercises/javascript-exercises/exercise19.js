@@ -14,6 +14,14 @@ const assert = require("assert");
 // Execute this exercise.
 // If you see the message "success!", all tests pass.
 
+function makeObject(title, first, last){
+    return {
+        title: title,
+        firstName: first,
+        lastName: last
+    };
+}
+
 assert.deepStrictEqual(makeObject("", "Merilee", "Sheldrick"), { title: "", firstName: "Merilee", lastName: "Sheldrick" });
 assert.deepStrictEqual(makeObject("Mr.", "Bale", "Packmann"), { title: "Mr.", firstName: "Bale", lastName: "Packmann" });
 assert.deepStrictEqual(makeObject("Dr.", "Letisha", "Pursey"), { title: "Dr.", firstName: "Letisha", lastName: "Pursey" });

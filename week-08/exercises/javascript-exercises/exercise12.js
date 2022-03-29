@@ -8,7 +8,15 @@ const assert = require("assert");
 // Description: return true if the three parameters are in ascending order.
 // Otherwise, returns false.
 // (See exercise08.)
-
+function areInOrder(){
+    let args = Array.prototype.slice.call(arguments);
+    for (i = 1; i< args.length; i++){
+        if (args[i-1]> args[i]){
+            return false;
+        }
+    }
+    return true;
+}
 // 2. Create a function.
 // Name: areContiguous
 // Parameters: number, number, number
@@ -26,6 +34,17 @@ const assert = require("assert");
 // 7, 5, 6 -> false
 // 1, 0, 1 -> true
 
+function areContiguous(){
+    let args = Array.prototype.slice.call(arguments);
+    for (i = 1; i< args.length; i++){
+        // false                        true
+        if (args[i-1]+1 != args[i] && args[i-1]-1 != args[i]){
+            return false;
+        }
+    }
+    return true;
+}
+
 // 3. Create a function.
 // Name: isAscendingContiguous
 // Parameters: number, number, number
@@ -37,6 +56,10 @@ const assert = require("assert");
 
 // Execute this exercise.
 // If you see the message "success!", all tests pass.
+
+function isAscendingContiguous(a,b,c){
+    return (areContiguous(a,b,c) && areInOrder(a,b,c));
+}
 
 assert.strictEqual(isAscendingContiguous(3, 4, 5), true);
 assert.strictEqual(isAscendingContiguous(-10, 4, 100), false);

@@ -21,6 +21,10 @@ const f2 = function () {
     ["snow", "sun", "ice fishing"].forEach(console.log);
 };
 
+function runFunction(fxn){
+    fxn();
+}
+
 runFunction(f1);
 runFunction(f2);
 runFunction(() => console.log("firecracker"));

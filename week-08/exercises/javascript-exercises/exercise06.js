@@ -7,6 +7,19 @@ const second = "123";
 // and take one character from the second string and add it to the result.
 // If there are no more characters available, don't add characters.
 // 2. Print the result.
+let mix = "";
+let i = 0;
+while (i < Math.min(first.length, second.length)){
+    mix += first.charAt(i) + second.charAt(i);
+    i++;
+}
+if (first.length> second.length){
+    mix += first.substring(i);
+}
+else {
+    mix += second.substring(i);
+}
+console.log(mix);
 
 // Examples
 // "abc", "123" -> "a1b2c3"

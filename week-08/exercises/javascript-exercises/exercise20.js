@@ -17,6 +17,16 @@ Generically:
 // If any property is missing, omit it. If a missing property creates an empty line, omit the line.
 // Hint: object destructing is useful, but not required, here.
 
+function printBusinessCard(obj){
+  console.log(obj.firstName+ " " + obj.lastName);
+  if (obj.jobTitle){
+    console.log(obj.jobTitle)
+  }
+  if (obj.pithyPhrase){
+    console.log("\""+obj.pithyPhrase+"\"")
+  }
+}
+
 
 printBusinessCard({
     jobTitle: "Architect",

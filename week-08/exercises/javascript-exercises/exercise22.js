@@ -11,6 +11,16 @@ const assert = require("assert");
 // Execute this exercise.
 // If you see the message "success!", all tests pass.
 
+function extractNames(lis){
+    output = [];
+    for (ind in lis){
+        if (lis[ind].name){
+         output.push(lis[ind].name);
+        }
+    }
+    return output;
+} 
+
 let input = [
     { a: 1, name: "a", c: true },
     { name: "b" },

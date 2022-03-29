@@ -9,6 +9,11 @@ const assert = require("assert");
 // Execute this exercise.
 // If you see the message "success!", all tests pass.
 
+function mergeObjects(obj1, obj2){
+    obj = {...obj1, ...obj2};
+    return obj;
+}
+
 const testCases = [
     {
         firstObj: { a: 1, b: "b" },
