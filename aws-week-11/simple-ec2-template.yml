@@ -1,0 +1,19 @@
+Resources:
+  SimpleEC2Instance:                    
+    Type: 'AWS::EC2::Instance'          
+    Properties:
+      SecurityGroups:
+        !Ref SimpleSecurityGroup                         
+      AvailabilityZone: us-east-2a  
+      ImageId: ami-0f9fc25dd2506cf6d           
+      InstanceType: t2.micro
+      KeyName: jacob-kp
+  SimpleSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Enable SSH access via port 22
+      SecurityGroupIngress:
+        IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 0.0.0.0/0

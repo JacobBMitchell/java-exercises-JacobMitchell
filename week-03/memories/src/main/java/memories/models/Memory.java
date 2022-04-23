@@ -1,9 +1,20 @@
 package memories.models;
 
+import javax.validation.constraints.*;
+
 public class Memory {
+
+
     private int id;
+
+    @NotBlank(message = "Need who from.")
+    @Size(max = 50, message = "To long")
     private String from;
+
+    @NotBlank(message = "Needs content")
     private String content;
+
+    @NotNull(message = "Needs sharable or not")
     private boolean shareable;
 
     public Memory(){

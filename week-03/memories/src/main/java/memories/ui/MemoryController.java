@@ -1,7 +1,6 @@
 package memories.ui;
 
 import memories.data.DataAccessException;
-import memories.domain.DbResult;
 import memories.domain.MemoryResult;
 import memories.domain.MemoryServiceTemplate;
 import memories.models.Memory;

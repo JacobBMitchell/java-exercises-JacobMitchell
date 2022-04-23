@@ -5,7 +5,12 @@ import memories.data.MemoryRepository;
 import memories.models.Memory;
 import org.springframework.stereotype.Service;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.util.List;
+import java.util.Set;
 
 //@Service
 public class MemoryService implements MemoryServiceTemplate {
@@ -28,8 +33,14 @@ public class MemoryService implements MemoryServiceTemplate {
 
     @Override
     public MemoryResult add(Memory memory)throws DataAccessException{
-        MemoryResult result = validate(memory);
+        MemoryResult result = new MemoryResult();
 
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<Memory>> violations = validator.validate(memory);
+        if (!violations.isEmpty()) {
+            violations.forEach(a -> result.addErrorMessage(a.getMessage()));
+        }
         if(memory.getId() > 0){
             result.addErrorMessage("Memory 'id' should not be set.");
         }
@@ -42,7 +53,14 @@ public class MemoryService implements MemoryServiceTemplate {
 
     @Override
     public MemoryResult update(Memory memory)throws DataAccessException{
-        MemoryResult result = validate(memory);
+        MemoryResult result = new MemoryResult();
+
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<Memory>> violations = validator.validate(memory);
+        if (!violations.isEmpty()) {
+            violations.forEach(a -> result.addErrorMessage(a.getMessage()));
+        }
 
         if (memory.getId() <= 0){
             result.addErrorMessage("Memory 'id' is required.");
@@ -69,22 +87,22 @@ public class MemoryService implements MemoryServiceTemplate {
         return result;
     }
 
-    private MemoryResult validate(Memory memory) {
-        MemoryResult result = new MemoryResult();
-
-        if (memory == null) {
-            result.addErrorMessage("Memory cannot be null.");
-            return result;
-        }
-
-        if (memory.getFrom() == null || memory.getFrom().isBlank()) {
-            result.addErrorMessage("Memory `from` is required.");
-        }
-
-        if (memory.getContent() == null || memory.getContent().isBlank()) {
-            result.addErrorMessage("Memory `content` is required.");
-        }
-
-        return result;
-    }
+//    private MemoryResult validate(Memory memory) {
+//        MemoryResult result = new MemoryResult();
+//
+//        if (memory == null) {
+//            result.addErrorMessage("Memory cannot be null.");
+//            return result;
+//        }
+//
+//        if (memory.getFrom() == null || memory.getFrom().isBlank()) {
+//            result.addErrorMessage("Memory `from` is required.");
+//        }
+//
+//        if (memory.getContent() == null || memory.getContent().isBlank()) {
+//            result.addErrorMessage("Memory `content` is required.");
+//        }
+//
+//        return result;
+//    }
 }
