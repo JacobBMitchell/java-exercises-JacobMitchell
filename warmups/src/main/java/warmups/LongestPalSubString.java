@@ -2,7 +2,7 @@ package warmups;
 
 public class LongestPalSubString {
     public static void main(String[] args) {
-        String input = "fortbragstoplistpopracecardigdug"; //Icarat
+        String input = ""; //Icarat
         String output = LPSS(input);
         System.out.println(output);
     }
