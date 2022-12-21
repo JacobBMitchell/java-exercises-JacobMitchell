@@ -1,19 +1,13 @@
 package warmups;
 
 public class LongestPalSubString {
-    public static void main(String[] args) {
-        String input = ""; //Icarat
-        String output = LPSS(input);
-        System.out.println(output);
-    }
-
 
 /*
     LPSS Longest Palindromic sub string
     This function takes a string
     returns a string that is the largest palindrom substring
  */
-    public static String LPSS(String input) {
+    public static String longestSubPal(String input) {
         //edge case for empty strings
         if (input.length() == 0){
             return "";

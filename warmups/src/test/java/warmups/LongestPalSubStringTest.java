@@ -8,15 +8,15 @@ class LongestPalSubStringTest {
 
     @Test
     void LPSS() {
-        assertEquals("", LongestPalSubString.LPSS(""));
-        assertEquals("ada", LongestPalSubString.LPSS("ada"));
-        assertEquals("ada", LongestPalSubString.LPSS("bradaf"));
-        assertEquals("oooo", LongestPalSubString.LPSS("ooooada"));
-        assertEquals("oooo", LongestPalSubString.LPSS("brooooppadab"));
-        assertEquals("racecar", LongestPalSubString.LPSS("adapbpracecar"));
-        assertEquals("racecar", LongestPalSubString.LPSS("racecar"));
-        assertEquals("b", LongestPalSubString.LPSS("bread"));
-        assertEquals("ommo", LongestPalSubString.LPSS("commom"));
+        assertEquals("", LongestPalSubString.longestSubPal(""));
+        assertEquals("ada", LongestPalSubString.longestSubPal("ada"));
+        assertEquals("ada", LongestPalSubString.longestSubPal("bradaf"));
+        assertEquals("oooo", LongestPalSubString.longestSubPal("ooooada"));
+        assertEquals("oooo", LongestPalSubString.longestSubPal("brooooppadab"));
+        assertEquals("racecar", LongestPalSubString.longestSubPal("adapbpracecar"));
+        assertEquals("racecar", LongestPalSubString.longestSubPal("racecar"));
+        assertEquals("b", LongestPalSubString.longestSubPal("bread"));
+        assertEquals("ommo", LongestPalSubString.longestSubPal("commom"));
     }
 
 }
